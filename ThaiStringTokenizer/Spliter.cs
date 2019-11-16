@@ -18,8 +18,6 @@ namespace ThaiStringTokenizer
         public Spliter()
         {
             _dictionary = new Dictionary<char, List<string>>();
-            var _assembly = Assembly.GetExecutingAssembly();
-            // var _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("ThaiStringTokenizer.dictionary.txt"));
 
             string text = File.ReadAllText("dictionary.txt");
             allWord = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
@@ -29,7 +27,6 @@ namespace ThaiStringTokenizer
                 if (!_dictionary.ContainsKey(word[0]))
                 {
                     _dictionary.Add(word[0], new List<string>());
-                    //Console.WriteLine("added "+ word[0]);
                 }
                 _dictionary[word[0]].Add(word);
             }
@@ -54,29 +51,15 @@ namespace ThaiStringTokenizer
             }
         }
 
-        public byte[] StringToAscii(string text)
-        {
-            string value = text;
-
-            // Convert the string into a byte[].
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(value);
-            return asciiBytes;
-        }
-
-        public string[] GetDictionary()
-        {
-            return allWord;
-        }
+        public byte[] StringToAscii(string text) => Encoding.ASCII.GetBytes(text);
 
         public List<string> SegmentByDictionary(string input)
         {
-            // check space
-            // eng type
-            string[] inputSplitSpace = input.Split(' ');
-            List<string> outputList = new List<string>();
+            var inputSplitSpace = input.Split(' ');
+            var outputList = new List<string>();
+
             foreach (string item in inputSplitSpace)
             {
-                // initial
                 char[] inputChar = item.ToCharArray();
                 string tmpString = "";
                 for (int i = 0; i < inputChar.Length; i++)
@@ -100,7 +83,6 @@ namespace ThaiStringTokenizer
                         outputList.Add(tmpString);
                         tmpString = "";
                     }
-                    // thai langauge type
                     else if (IsVowelNeedConsonant(inputChar[i]))
                     {
                         tmpString += inputChar[i].ToString();
@@ -115,7 +97,6 @@ namespace ThaiStringTokenizer
                             {
                                 break;
                             }
-
                         }
                         outputList.Add(tmpString);
                         tmpString = "";
@@ -160,15 +141,6 @@ namespace ThaiStringTokenizer
                                     }
                                 }
                             }
-                            //int pos = Array.IndexOf(allWord, moretmp);
-                            //// found in dictionary
-                            //if (pos > -1)
-                            //{
-                            //    tmpString = moretmp;
-                            //    i = j;
-                            //    isFound = true;
-                            //}
-
                         }
                         if (isFound)
                         {
@@ -186,35 +158,11 @@ namespace ThaiStringTokenizer
             return outputList;
         }
 
-        public bool IsConsonant(char charNumber) => charNumber >= 3585 && 3630 >= charNumber;
+        public bool IsConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
+        public bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
+        public bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
+        public bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659;
 
-        public bool isVowel(char charNumber) => charNumber >= 3632 && 3653 >= charNumber;
-
-        public bool IsVowelNeedConsonant(char charNumber)
-        {
-            if (charNumber >= 3632 && 3641 >= charNumber)
-                return true;
-
-            if (charNumber == 3653)
-                return true;
-
-            return false;
-        }
-        public bool IsToken(char charNumber) => charNumber >= 3656 && 3659 >= charNumber;
-
-        public bool IsEngCharacter(char charNumber)
-        {
-            // large letter
-            if (charNumber >= 41 && charNumber <= 90)
-            {
-                return true;
-            }
-            // small letter
-            else if (charNumber >= 61 && charNumber <= 122)
-            {
-                return true;
-            }
-            return false;
-        }
+        public bool IsEngCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
