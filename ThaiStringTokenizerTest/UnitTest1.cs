@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using System.Collections.Generic;
+using System.Linq;
 using ThaiStringTokenizer;
 
 namespace ThaiStringTokenizerTest
@@ -11,51 +12,74 @@ namespace ThaiStringTokenizerTest
         public void Test1()
         {
             Spliter spliter = new Spliter();
-            string test = "นายจะไปไหนหรอ";
-            var output = spliter.SegmentByDictionary(test);
+            string test = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+            var result = spliter.SegmentByDictionary(test);
 
-            var asset = new List<string>
+            var expected = new List<string>
             {
-                "นาย",
-                "จะ",
-                "ไป",
-                "ไหน",
-                "หรอ"
+                "ปลา",
+                "ที่",
+                "ใหญ่",
+                "ที่สุด",
+                "ใน",
+                "โลก",
+                "คือ",
+                "ปารีส",
+                "ชุบ",
+                "แป้ง",
+                "ทอด"
             };
-            foreach (var variable in output)
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
             {
-                Console.WriteLine(variable);
-            }
-            Assert.Equal(asset.Count, output.Count);
-            Assert.Equal(asset[0], output[0]);
-            Assert.Equal(asset[1], output[1]);
-            Assert.Equal(asset[2], output[2]);
-            Assert.Equal(asset[3], output[3]);
-            Assert.Equal(asset[4], output[4]);
+                Console.WriteLine(x);
+                Assert.Equal(expected[index], x);
+                index++;
+            });
         }
 
         [Fact]
         public void Test2()
         {
             Spliter spliter = new Spliter();
-            string test = "ไอ้นี่ถ้าจะบ้า";
-            var output = spliter.SegmentByDictionary(test);
+            string test = "อดีตอาจทำให้เราเจ็บปวด แต่เราเลือกได้ว่าจะวิ่งหนีมันไป หรือใช้มันเป็นบทเรียน";
+            var result = spliter.SegmentByDictionary(test);
 
-            var asset = new List<string>
+            var expected = new List<string>
             {
-                "ไอ้",
-                "นี่",
-                "ถ้า",
+                "อดีต",
+                "อาจ",
+                "ทำให้",
+                "เรา",
+                "เจ็บปวด",
+                "แต่",
+                "เรา",
+                "เลือก",
+                "ได้",
+                "ว่า",
                 "จะ",
-                "บ้า"
+                "วิ่งหนี",
+                "มัน",
+                "ไป",
+                "หรือ",
+                "ใช้",
+                "มัน",
+                "เป็น",
+                "บทเรียน"
             };
 
-            Assert.Equal(asset.Count, output.Count);
-            Assert.Equal(asset[0], output[0]);
-            Assert.Equal(asset[1], output[1]);
-            Assert.Equal(asset[2], output[2]);
-            Assert.Equal(asset[3], output[3]);
-            Assert.Equal(asset[4], output[4]);
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Console.WriteLine(x);
+                Assert.Equal(expected[index], x);
+                index++;
+            });
         }
     }
 }
