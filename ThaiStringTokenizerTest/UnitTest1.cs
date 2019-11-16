@@ -11,9 +11,9 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void Test1()
         {
-            Spliter spliter = new Spliter();
+            ThaiTokenizer tokenizer = new ThaiTokenizer();
             string test = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
-            var result = spliter.SegmentByDictionary(test);
+            var result = tokenizer.Split(test);
 
             var expected = new List<string>
             {
@@ -44,9 +44,9 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void Test2()
         {
-            Spliter spliter = new Spliter();
+            ThaiTokenizer tokenizer = new ThaiTokenizer();
             string test = "อดีตอาจทำให้เราเจ็บปวด แต่เราเลือกได้ว่าจะวิ่งหนีมันไป หรือใช้มันเป็นบทเรียน";
-            var result = spliter.SegmentByDictionary(test);
+            var result = tokenizer.Split(test);
 
             var expected = new List<string>
             {

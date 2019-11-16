@@ -6,13 +6,13 @@ using System.Text;
 
 namespace ThaiStringTokenizer
 {
-    public class Spliter
+    public class ThaiTokenizer
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
 
         public string[] Words { get; private set; }
 
-        public Spliter(string[] words = null)
+        public ThaiTokenizer(string[] words = null)
         {
             var text = File.ReadAllText("dictionary.txt");
             var originalWords = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
@@ -37,7 +37,7 @@ namespace ThaiStringTokenizer
             }
         }
 
-        public List<string> SegmentByDictionary(string input)
+        public List<string> Split(string input)
         {
             var inputSplitSpace = input.Split(' ');
             var outputList = new List<string>();
@@ -141,11 +141,10 @@ namespace ThaiStringTokenizer
             return outputList;
         }
 
-        public bool IsConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
-        public bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
-        public bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
-        public bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659;
-
-        public bool IsEnglishChar(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
+        private bool IsConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
+        private bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
+        private bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
+        private bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659;
+        private bool IsEnglishChar(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
