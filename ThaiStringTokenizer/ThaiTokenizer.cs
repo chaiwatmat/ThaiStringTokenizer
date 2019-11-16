@@ -10,8 +10,6 @@ namespace ThaiStringTokenizer
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
 
-        public string[] Words { get; private set; }
-
         public ThaiTokenizer(string[] words = null)
         {
             var text = File.ReadAllText("dictionary.txt");
@@ -37,6 +35,8 @@ namespace ThaiStringTokenizer
             }
         }
 
+        public string[] Words { get; private set; }
+
         public List<string> Split(string input)
         {
             var inputSplitSpace = input.Split(' ');
@@ -44,8 +44,8 @@ namespace ThaiStringTokenizer
 
             foreach (string item in inputSplitSpace)
             {
-                char[] inputChar = item.ToCharArray();
-                string tmpString = "";
+                var inputChar = item.ToCharArray();
+                var tmpString = "";
                 for (int i = 0; i < inputChar.Length; i++)
                 {
                     if (IsEnglishChar(inputChar[i]))
