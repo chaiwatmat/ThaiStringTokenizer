@@ -19,9 +19,11 @@ namespace ThaiStringTokenizer
         {
             _dictionary = new Dictionary<char, List<string>>();
             var _assembly = Assembly.GetExecutingAssembly();
-            var _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("ThaiSplitLib.dictionary.txt"));
-            string text = _textStreamReader.ReadToEnd();
+            // var _textStreamReader = new StreamReader(_assembly.GetManifestResourceStream("ThaiStringTokenizer.dictionary.txt"));
+
+            string text = File.ReadAllText("dictionary.txt");
             allWord = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+
             foreach (var word in allWord)
             {
                 if (!_dictionary.ContainsKey(word[0]))
