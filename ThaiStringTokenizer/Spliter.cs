@@ -8,21 +8,26 @@ namespace ThaiStringTokenizer
 {
     public class Spliter
     {
-        private string[] allWord;
-        private Dictionary<char, List<string>> _dictionary;
+        private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
 
-        /// <summary>
-        /// Assign Dictionary
-        /// </summary>
-        /// <param name="dict">string[]</param>
-        public Spliter()
+        public string[] Words { get; private set; }
+
+        public Spliter(string[] words = null)
         {
-            _dictionary = new Dictionary<char, List<string>>();
+            var text = File.ReadAllText("dictionary.txt");
+            var originalWords = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
-            string text = File.ReadAllText("dictionary.txt");
-            allWord = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            var listWords = new List<string>();
+            listWords.AddRange(originalWords);
 
-            foreach (var word in allWord)
+            if (words != null)
+            {
+                listWords.AddRange(words);
+            }
+
+            Words = listWords.ToArray();
+
+            foreach (var word in Words)
             {
                 if (!_dictionary.ContainsKey(word[0]))
                 {
@@ -31,27 +36,6 @@ namespace ThaiStringTokenizer
                 _dictionary[word[0]].Add(word);
             }
         }
-
-
-        /// <summary>
-        /// Assign Dictionary
-        /// </summary>
-        /// <param name="dict">string[]</param>
-        public Spliter(string[] words)
-        {
-            _dictionary = new Dictionary<char, List<string>>();
-            allWord = words;
-            foreach (var word in allWord)
-            {
-                if (!_dictionary.ContainsKey(word[0]))
-                {
-                    _dictionary.Add(word[0], new List<string>());
-                }
-                _dictionary[word[0]].Add(word);
-            }
-        }
-
-        public byte[] StringToAscii(string text) => Encoding.ASCII.GetBytes(text);
 
         public List<string> SegmentByDictionary(string input)
         {
@@ -64,13 +48,12 @@ namespace ThaiStringTokenizer
                 string tmpString = "";
                 for (int i = 0; i < inputChar.Length; i++)
                 {
-                    // eng langauge type
-                    if (IsEngCharacter(inputChar[i]))
+                    if (IsEnglishChar(inputChar[i]))
                     {
                         tmpString += inputChar[i].ToString();
                         for (int j = i + 1; j < inputChar.Length; j++)
                         {
-                            if (IsEngCharacter(inputChar[j]))
+                            if (IsEnglishChar(inputChar[j]))
                             {
                                 tmpString += inputChar[j];
                                 i = j;
@@ -153,8 +136,8 @@ namespace ThaiStringTokenizer
                         outputList.Add(inputChar[i].ToString());
                     }
                 }
-
             }
+
             return outputList;
         }
 
@@ -163,6 +146,6 @@ namespace ThaiStringTokenizer
         public bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
         public bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659;
 
-        public bool IsEngCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
+        public bool IsEnglishChar(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
