@@ -6,7 +6,10 @@
     <Version>0.1.0</Version>
     <Authors>chaiwatmat</Authors>
     <Company>ThaiStringTokenizer</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+
+
 
   <ItemGroup>
     <Content Include="dictionary.txt">
