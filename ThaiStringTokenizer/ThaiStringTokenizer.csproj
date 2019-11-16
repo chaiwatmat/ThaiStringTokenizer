@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>ThaiStringTokenizer</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>chaiwatmat</Authors>
+    <Company>ThaiStringTokenizer</Company>
   </PropertyGroup>
 
   <ItemGroup>
