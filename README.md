@@ -1,8 +1,6 @@
 # ThaiStringTokenizer
 
-Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai language.
-
-Source code base on <https://github.com/tyroroto/ThaiWord-Segmentation-.Net> but implemented for support dotnet standard 2.0
+Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai language, implemented for support dotnet standard 2.0
 
 ## Installation
 
