@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ThaiStringTokenizer</PackageId>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <Authors>chaiwatmat</Authors>
     <Company>ThaiStringTokenizer</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

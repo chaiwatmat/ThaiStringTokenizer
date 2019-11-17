@@ -1,8 +1,8 @@
 using System;
-using Xunit;
 using System.Collections.Generic;
 using System.Linq;
 using ThaiStringTokenizer;
+using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
@@ -35,7 +35,7 @@ namespace ThaiStringTokenizerTest
             var index = 0;
             result.ForEach(x =>
             {
-                Console.WriteLine(x);
+                // Console.WriteLine(x);
                 Assert.Equal(expected[index], x);
                 index++;
             });
@@ -69,6 +69,55 @@ namespace ThaiStringTokenizerTest
                 "มัน",
                 "เป็น",
                 "บทเรียน"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                // Console.WriteLine(x);
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSubThaiString1()
+        {
+            ThaiTokenizer tokenizer = new ThaiTokenizer();
+            string text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+            var result = tokenizer.SubThaiString(text, 10);
+
+            var expected = new List<string>
+            {
+                "ปลาที่ใหญ่ที่สุด",
+                "ในโลกคือ",
+                "ปารีสชุบแป้ง",
+                "ทอด"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSubThaiString2()
+        {
+            ThaiTokenizer tokenizer = new ThaiTokenizer();
+            string text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+            var result = tokenizer.SubThaiString(text, 20);
+
+            var expected = new List<string>
+            {
+                "ปลาที่ใหญ่ที่สุดในโลกคือ",
+                "ปารีสชุบแป้งทอด"
             };
 
             Assert.Equal(expected.Count, result.Count);
