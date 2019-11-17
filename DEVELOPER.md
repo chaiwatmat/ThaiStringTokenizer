@@ -15,7 +15,7 @@ dotnet build
 ## Publish to nuget.org
 
 ```sh
-dotnet nuget push ThaiStringTokenizer/bin/Debug/ThaiStringTokenizer.0.1.0.nupkg \
+dotnet nuget push ThaiStringTokenizer/bin/Debug/ThaiStringTokenizer.0.2.1.nupkg \
     -k $NUGET_TOKEN \
     -s https://api.nuget.org/v3/index.json
 ```

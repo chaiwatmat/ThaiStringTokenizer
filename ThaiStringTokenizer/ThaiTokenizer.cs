@@ -12,8 +12,7 @@ namespace ThaiStringTokenizer
 
         public ThaiTokenizer(string[] words = null)
         {
-            var text = File.ReadAllText("dictionary.txt");
-            var originalWords = text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            var originalWords = ThaiWord.Words.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
             var listWords = new List<string>();
             listWords.AddRange(originalWords);
