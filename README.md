@@ -62,3 +62,7 @@ public void SplitWord()
     //result will be => ["หวักลี", "หวัดดี", "ปลา", "ที่", "ใหญ่", "ที่สุด", "ใน", "โลก", "คือ", "ปารีส", "ชุบ", "แป้ง", "ทอด", "เชอแตม"]
 }
 ```
+
+## License
+
+Licensed under the MIT license. See LICENSE.md for details.
