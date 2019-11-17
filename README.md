@@ -4,9 +4,15 @@ Thai string tokenizer
 
 ## Installation
 
+### dotnet core
+
 ```sh
 dotnet add package ThaiStringTokenizer
 ```
+
+### other options from nuget
+
+<https://www.nuget.org/packages/ThaiStringTokenizer/0.2.1>
 
 ## How to use
 
