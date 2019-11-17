@@ -65,4 +65,4 @@ public void SplitWord()
 
 ## License
 
-Licensed under the MIT license. See [LICENSE.md](LICENSE.md) for details.
+Licensed under the MIT license. See [LICENSE](LICENSE) for details.
