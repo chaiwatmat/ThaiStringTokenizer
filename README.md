@@ -12,7 +12,7 @@ dotnet add package ThaiStringTokenizer
 
 ### other options from nuget
 
-<https://www.nuget.org/packages/ThaiStringTokenizer/0.2.1>
+<https://www.nuget.org/packages/ThaiStringTokenizer/>
 
 ## How to use
 
