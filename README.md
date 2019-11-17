@@ -1,6 +1,6 @@
 # ThaiStringTokenizer
 
-Thai string tokenizer
+Thai string tokenizer is a ThaiString Library tokenizer and Substring for Thai language.
 
 ## Installation
 
