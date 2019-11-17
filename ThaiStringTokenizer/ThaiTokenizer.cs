@@ -11,7 +11,7 @@ namespace ThaiStringTokenizer
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
 
-        public ThaiTokenizer(string[] words = null)
+        public ThaiTokenizer(List<string> words = null)
         {
             var originalWords = ThaiWord.Words.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
