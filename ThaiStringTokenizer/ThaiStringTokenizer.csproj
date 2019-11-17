@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ThaiStringTokenizer</PackageId>
-    <Version>0.2.3</Version>
+    <Version>0.2.4</Version>
     <Authors>chaiwatmat</Authors>
     <Company>ThaiStringTokenizer</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>a dotnet Library tokenizer and Substring for Thai language, implemented for support dotnet standard 2.0</Title>
+    <RepositoryUrl>https://github.com/chaiwatmat/ThaiStringTokenizer</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
