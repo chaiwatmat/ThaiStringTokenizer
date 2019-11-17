@@ -83,6 +83,43 @@ namespace ThaiStringTokenizerTest
         }
 
         [Fact]
+        public void Test3()
+        {
+            List<string> appendDictionary = new List<string> { "หวัดดี", "หวักลี", "เชอแตม" };
+            ThaiTokenizer tokenizer = new ThaiTokenizer(appendDictionary);
+            string test = "หวักลีหวัดดีปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอดเชอแตม";
+            var result = tokenizer.Split(test);
+
+            var expected = new List<string>
+            {
+                "หวักลี",
+                "หวัดดี",
+                "ปลา",
+                "ที่",
+                "ใหญ่",
+                "ที่สุด",
+                "ใน",
+                "โลก",
+                "คือ",
+                "ปารีส",
+                "ชุบ",
+                "แป้ง",
+                "ทอด",
+                "เชอแตม"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                // Console.WriteLine(x);
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
         public void TestSubThaiString1()
         {
             ThaiTokenizer tokenizer = new ThaiTokenizer();
