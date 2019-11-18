@@ -162,7 +162,6 @@ namespace ThaiStringTokenizerTest
             var index = 0;
             result.ForEach(x =>
             {
-                Console.WriteLine(x);
                 Assert.Equal(expected[index], x);
                 index++;
             });

@@ -10,13 +10,16 @@ namespace ThaiStringTokenizer
     public class ThaiTokenizer
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
+        private bool _removeSpace;
 
-        public ThaiTokenizer(List<string> words = null)
+        public ThaiTokenizer(List<string> words = null, bool removeSpace = true)
         {
             var originalWords = ThaiWord.Words.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
             var listWords = new List<string>();
             listWords.AddRange(originalWords);
+
+            _removeSpace = removeSpace;
 
             if (words != null)
             {
@@ -38,7 +41,7 @@ namespace ThaiStringTokenizer
         public string[] Words { get; private set; }
         public List<string> Split(string input)
         {
-            var inputSplitSpace = input.Split(' ');
+            var inputSplitSpace = _removeSpace ? input.Split(' ') : new string[] { input };
             var outputList = new List<string>();
 
             foreach (string item in inputSplitSpace)
