@@ -63,6 +63,21 @@ public void SplitWord()
 }
 ```
 
+### Do not remove space
+
+```cs
+using System.Collections.Generic;
+using ThaiStringTokenizer
+
+public void SplitWord()
+{
+    ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+    string text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
+    List<string> result = tokenizer.SubThaiString(text);
+    //result will be => ["อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"]
+}
+```
+
 ## License
 
 Licensed under the MIT license. See [LICENSE](LICENSE) for details.
