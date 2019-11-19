@@ -56,5 +56,95 @@ namespace ThaiStringTokenizerTest
                 index++;
             });
         }
+
+        [Fact]
+        public void TestSplit_ThaiWithEnglish()
+        {
+            ThaiTokenizer tokenizer = new ThaiTokenizer();
+            string text = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var result = tokenizer.Split(text);
+
+            var expected = new List<string>
+            {
+                "ทดสอบ",
+                "ไทย",
+                "คำ",
+                "อังกฤษ",
+                "คำ",
+                "Test",
+                "Thai",
+                "language",
+                "with",
+                "English"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSplitKeepSpace_ThaiWithEnglish()
+        {
+            ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+            string text = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var result = tokenizer.Split(text);
+
+            var expected = new List<string>
+            {
+                "ทดสอบ",
+                "ไทย",
+                "คำ",
+                " ",
+                "อังกฤษ",
+                "คำ",
+                " ",
+                "Test",
+                " ",
+                "Thai",
+                " ",
+                "language",
+                " ",
+                "with",
+                " ",
+                "English"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSubThaiString_ThaiWithEnglish()
+        {
+            ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+            string text = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var result = tokenizer.SubThaiString(text, 50);
+
+            var expected = new List<string>
+            {
+                "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English"
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
     }
 }
