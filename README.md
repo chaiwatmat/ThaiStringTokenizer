@@ -4,17 +4,31 @@ Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai langu
 
 ## Installation
 
-### dotnet core
+### Package Manager
+
+```bat
+Install-Package ThaiStringTokenizer -Version 0.3.1
+```
+
+### .NET CLI
 
 ```sh
 dotnet add package ThaiStringTokenizer
 ```
 
-### other options from nuget
+### PackageReference
 
-<https://www.nuget.org/packages/ThaiStringTokenizer/>
+```xml
+<PackageReference Include="ThaiStringTokenizer" Version="0.3.1" />
+```
 
-## How to use
+### Paket CLI
+
+```sh
+paket add ThaiStringTokenizer --version 0.3.1
+```
+
+## Usage
 
 ### Split Thai word
 
@@ -69,11 +83,12 @@ public void SplitWord()
 using System.Collections.Generic;
 using ThaiStringTokenizer
 
-public void SplitWord()
+public void SubstringThaiStyle()
 {
     ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
     string text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
-    List<string> result = tokenizer.SubThaiString(text);
+    var maxLenght = 50;
+    List<string> result = tokenizer.SubThaiString(text, maxLength);
     //result will be => ["อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"]
 }
 ```
