@@ -16,7 +16,9 @@ jobs:
           dotnet-version: 2.2.108
       - name: Build with dotnet
         run: dotnet build --configuration Debug
-      - name: Push to nuget
-        env:
-          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-        run: dotnet nuget push ThaiStringTokenizer/bin/Debug/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
+      - name: Run unit test
+        run: dotnet test
+      # - name: Push to nuget
+      #   env:
+      #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+      #   run: dotnet nuget push ThaiStringTokenizer/bin/Debug/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
