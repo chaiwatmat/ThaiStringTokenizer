@@ -100,7 +100,6 @@ namespace ThaiStringTokenizer
                             {
                                 break;
                             }
-
                         }
                         outputList.Add(tmpString);
                         tmpString = "";

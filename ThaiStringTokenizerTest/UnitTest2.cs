@@ -58,6 +58,5 @@ namespace ThaiStringTokenizerTest
                 index++;
             });
         }
-
     }
 }
