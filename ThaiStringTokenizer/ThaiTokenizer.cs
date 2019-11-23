@@ -56,14 +56,6 @@ namespace ThaiStringTokenizer
                     {
                         HandleEnglishCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsVowelRequireConsonant(character))
-                    {
-                        HandleVowelRequireConsonant(outputList, characters, ref tmpString, ref i);
-                    }
-                    else if (IsToneMarkCharacter(character))
-                    {
-                        HandleToneMarkCharacter(outputList, characters, ref tmpString, ref i);
-                    }
                     else if (IsThaiConsonant(character) || isVowel(character))
                     {
                         HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
@@ -84,44 +76,6 @@ namespace ThaiStringTokenizer
             for (int j = i + 1; j < characters.Length; j++)
             {
                 if (IsEnglishCharacter(characters[j]))
-                {
-                    tmpString += characters[j];
-                    i = j;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            outputList.Add(tmpString);
-            tmpString = "";
-        }
-
-        private void HandleVowelRequireConsonant(List<string> outputList, char[] characters, ref string tmpString, ref int i)
-        {
-            tmpString += characters[i].ToString();
-            for (int j = i + 1; j < characters.Length; j++)
-            {
-                if (IsVowelRequireConsonant(characters[j]))
-                {
-                    tmpString += characters[j];
-                    i = j;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            outputList.Add(tmpString);
-            tmpString = "";
-        }
-
-        private void HandleToneMarkCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
-        {
-            tmpString += characters[i].ToString();
-            for (int j = i + 1; j < characters.Length; j++)
-            {
-                if (IsToneMarkCharacter(characters[j]))
                 {
                     tmpString += characters[j];
                     i = j;
@@ -214,8 +168,6 @@ namespace ThaiStringTokenizer
 
         private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
         private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
-        private bool IsVowelRequireConsonant(char charNumber) => ThaiUnicodeCharacter.VowelRequireConsonants.Contains(charNumber);
-        private bool IsToneMarkCharacter(char charNumber) => ThaiUnicodeCharacter.ToneMarks.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }

@@ -11,14 +11,25 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void TestToneMarkSubstring()
         {
-            var input = "สิ่งที่อยากจะมีมากที่สุดในชีวิตคือความรวย";
+            var input = "ผมอยากจะเป็นมหาเศรษฐี";
+            var expected = new List<string>
+            {
+                "ผม",
+                "อยาก",
+                "จะ",
+                "เป็น",
+                "มหาเศรษฐี"
+            };
 
             var tokenizer = new ThaiTokenizer();
 
             var results = tokenizer.Split(input);
+
+            var index = 0;
             results.ForEach(x =>
             {
-                Console.WriteLine(x);
+                Assert.Equal(expected[index], x);
+                index++;
             });
         }
 
