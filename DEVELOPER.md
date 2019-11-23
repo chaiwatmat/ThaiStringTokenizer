@@ -3,7 +3,7 @@
 ## Run test
 
 ```sh
-dotnet test
+dotnet test --logger "trx;LogFileName=result.trx"
 ```
 
 ## Build
