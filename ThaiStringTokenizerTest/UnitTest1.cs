@@ -120,6 +120,35 @@ namespace ThaiStringTokenizerTest
         }
 
         [Fact]
+        public void Test4()
+        {
+            List<string> appendDictionary = new List<string> { "หวัดดี", "หวักลี", "เชอแตม" };
+            ThaiTokenizer tokenizer = new ThaiTokenizer(appendDictionary);
+            string test = "ฤารักฉันจะเป็นเพียงความฝัน";
+            var result = tokenizer.Split(test);
+
+            var expected = new List<string>
+            {
+                "ฤา",
+                "รัก",
+                "ฉัน",
+                "จะ",
+                "เป็น",
+                "เพียง",
+                "ความฝัน",
+            };
+
+            Assert.Equal(expected.Count, result.Count);
+
+            var index = 0;
+            result.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
         public void TestSubThaiString1()
         {
             ThaiTokenizer tokenizer = new ThaiTokenizer();
