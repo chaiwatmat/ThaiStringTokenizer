@@ -4,6 +4,50 @@ namespace ThaiStringTokenizer
 {
     public static class ThaiUnicodeCharacter
     {
+        public static List<int> Characters
+        {
+            get
+            {
+                var characters = Consonants;
+                characters.AddRange(Vowels);
+                characters.AddRange(Sign);
+                characters.AddRange(CurrencySymbol);
+                characters.AddRange(VowelLengthSign);
+                characters.AddRange(RepetitionMark);
+                characters.AddRange(ToneMarks);
+                characters.AddRange(Signs);
+                characters.AddRange(Digits);
+
+                return new List<int>();
+            }
+        }
+
+        public static List<int> UncountForPrint
+        {
+            get
+            {
+                var uncountVowels = new List<int>
+                {
+                    0x0e31,
+                    0x0e34,
+                    0x0e35,
+                    0x0e36,
+                    0x0e37,
+                    0x0e38,
+                    0x0e39,
+                    0x0e3a,
+                    0x0e47,
+                    0x0e4c,
+                    0x0e4d,
+                    0x0e4e
+                };
+
+                uncountVowels.AddRange(ToneMarks);
+
+                return uncountVowels;
+            }
+        }
+
         /// ก - ฮ
         public static List<int> Consonants => new List<int>
         {
@@ -77,10 +121,9 @@ namespace ThaiStringTokenizer
 
             0x0e47
         };
-
         public static List<int> Sign => new List<int> { 0x0e2f }; //ฯ
         public static List<int> CurrencySymbol => new List<int> { 0x0e3f }; //฿
-        public static List<int> VowelLengthSign => new List<int> { 0x0e45 }; //ฤา
+        public static List<int> VowelLengthSign => new List<int> { 0x0e45 }; //ฤา (สระ า หางยาว)
         public static List<int> RepetitionMark => new List<int> { 0x0e46 }; //ๆ
         // ่ ้ ๊ ๋
         public static List<int> ToneMarks => new List<int>
@@ -100,6 +143,7 @@ namespace ThaiStringTokenizer
             0x0e5a,
             0x0e5b
         };
+        // ๐๑๒๓๔๕๖๗๘๙
         public static List<int> Digits => new List<int>
         {
             0x0e50,
