@@ -47,89 +47,24 @@ namespace ThaiStringTokenizer
             {
                 var inputChar = item.ToCharArray();
                 var tmpString = "";
+
                 for (int i = 0; i < inputChar.Length; i++)
                 {
                     if (IsEnglishChar(inputChar[i]))
                     {
-                        tmpString += inputChar[i].ToString();
-                        for (int j = i + 1; j < inputChar.Length; j++)
-                        {
-                            if (IsEnglishChar(inputChar[j]))
-                            {
-                                tmpString += inputChar[j];
-                                i = j;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        outputList.Add(tmpString);
-                        tmpString = "";
+                        HandleEnglishCharacter(outputList, inputChar, ref tmpString, ref i);
                     }
                     else if (IsVowelNeedConsonant(inputChar[i]))
                     {
-                        tmpString += inputChar[i].ToString();
-                        for (int j = i + 1; j < inputChar.Length; j++)
-                        {
-                            if (IsVowelNeedConsonant(inputChar[j]))
-                            {
-                                tmpString += inputChar[j];
-                                i = j;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        outputList.Add(tmpString);
-                        tmpString = "";
+                        HandleVowelRequireConsonant(outputList, inputChar, ref tmpString, ref i);
                     }
                     else if (IsToken(inputChar[i]))
                     {
-                        tmpString += inputChar[i].ToString();
-                        for (int j = i + 1; j < inputChar.Length; j++)
-                        {
-                            if (IsToken(inputChar[j]))
-                            {
-                                tmpString += inputChar[j];
-                                i = j;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        outputList.Add(tmpString);
-                        tmpString = "";
+                        HandleToken(outputList, inputChar, ref tmpString, ref i);
                     }
                     else if (IsConsonant(inputChar[i]) || isVowel(inputChar[i]))
                     {
-                        tmpString += inputChar[i].ToString();
-                        string moretmp = tmpString;
-                        bool isFound = false;
-                        for (int j = i + 1; j < inputChar.Length; j++)
-                        {
-                            moretmp += inputChar[j].ToString();
-                            if (_dictionary.ContainsKey(moretmp[0]))
-                            {
-                                foreach (var word in _dictionary[moretmp[0]])
-                                {
-                                    if (word == moretmp)
-                                    {
-                                        tmpString = moretmp;
-                                        i = j;
-                                        isFound = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        if (isFound)
-                        {
-                            outputList.Add(tmpString);
-                        }
-                        tmpString = "";
+                        HandleConsonantOrVowel(outputList, inputChar, ref tmpString, ref i);
                     }
                     else
                     {
@@ -138,6 +73,92 @@ namespace ThaiStringTokenizer
                 }
             }
             return outputList;
+        }
+
+        private void HandleEnglishCharacter(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        {
+            tmpString += inputChar[i].ToString();
+            for (int j = i + 1; j < inputChar.Length; j++)
+            {
+                if (IsEnglishChar(inputChar[j]))
+                {
+                    tmpString += inputChar[j];
+                    i = j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            outputList.Add(tmpString);
+            tmpString = "";
+        }
+
+        private void HandleVowelRequireConsonant(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        {
+            tmpString += inputChar[i].ToString();
+            for (int j = i + 1; j < inputChar.Length; j++)
+            {
+                if (IsVowelNeedConsonant(inputChar[j]))
+                {
+                    tmpString += inputChar[j];
+                    i = j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            outputList.Add(tmpString);
+            tmpString = "";
+        }
+
+        private void HandleToken(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        {
+            tmpString += inputChar[i].ToString();
+            for (int j = i + 1; j < inputChar.Length; j++)
+            {
+                if (IsToken(inputChar[j]))
+                {
+                    tmpString += inputChar[j];
+                    i = j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            outputList.Add(tmpString);
+            tmpString = "";
+        }
+
+        private void HandleConsonantOrVowel(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        {
+            tmpString += inputChar[i].ToString();
+            string moretmp = tmpString;
+            bool isFound = false;
+            for (int j = i + 1; j < inputChar.Length; j++)
+            {
+                moretmp += inputChar[j].ToString();
+                if (_dictionary.ContainsKey(moretmp[0]))
+                {
+                    foreach (var word in _dictionary[moretmp[0]])
+                    {
+                        if (word == moretmp)
+                        {
+                            tmpString = moretmp;
+                            i = j;
+                            isFound = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (isFound)
+            {
+                outputList.Add(tmpString);
+            }
+            tmpString = "";
         }
 
         public List<string> SubThaiString(string input, int length)
