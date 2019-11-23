@@ -24,7 +24,7 @@ jobs:
       - name: upload codecoverage result
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: pwd && ./codecov -f "coverage.opencover.xml" -t $CODECOV_TOKEN
+        run: pwd && cd ThaiStringTokenizerTest && ./codecov -f "coverage.opencover.xml" -t $CODECOV_TOKEN
       # - name: Push to nuget
       #   env:
       #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
