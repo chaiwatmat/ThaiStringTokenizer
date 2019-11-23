@@ -18,7 +18,21 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Debug
       - name: Run unit test
-        run: dotnet test
+        run: dotnet test ThaiStringTokenizerTest /p:CollectCoverage=true /p:CoverletOutputFormat=\"opencover\" /p:Threshold=80 /p:ThresholdType=branch
+      - name: codecov
+        run: dotnet tool install --global Codecov.Tool --version 1.9.0
+      - name: upload
+        env:
+          NUGET_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: codecov -f "ThaiStringTokenizerTest/coverage.opencover.xml" -t $CODECOV_TOKEN
+      # - name: curl
+      #   run: curl -s https://codecov.io/bash > codecov
+      # - name: curl
+      #   run: chmod +x codecov
+      # - name: curl
+      #   env:
+      #     NUGET_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      #   run: ./codecov -f "ThaiStringTokenizerTest/coverage.opencover.xml" -t $CODECOV_TOKEN
       # - name: Push to nuget
       #   env:
       #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
