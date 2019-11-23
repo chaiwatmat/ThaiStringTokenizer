@@ -40,49 +40,49 @@ namespace ThaiStringTokenizer
         public string[] Words { get; private set; }
         public List<string> Split(string input)
         {
-            var inputSplitSpace = _removeSpace ? input.Split(' ') : new string[] { input };
             var outputList = new List<string>();
+            var words = _removeSpace ? input.Split(' ') : new string[] { input };
 
-            foreach (string item in inputSplitSpace)
+            foreach (string word in words)
             {
-                var inputChar = item.ToCharArray();
+                var characters = word.ToCharArray();
                 var tmpString = "";
 
-                for (int i = 0; i < inputChar.Length; i++)
+                for (int i = 0; i < characters.Length; i++)
                 {
-                    if (IsEnglishCharacter(inputChar[i]))
+                    if (IsEnglishCharacter(characters[i]))
                     {
-                        HandleEnglishCharacter(outputList, inputChar, ref tmpString, ref i);
+                        HandleEnglishCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsVowelNeedConsonant(inputChar[i]))
+                    else if (IsVowelNeedConsonant(characters[i]))
                     {
-                        HandleVowelRequireConsonant(outputList, inputChar, ref tmpString, ref i);
+                        HandleVowelRequireConsonant(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsToken(inputChar[i]))
+                    else if (IsTokenCharacter(characters[i]))
                     {
-                        HandleToken(outputList, inputChar, ref tmpString, ref i);
+                        HandleTokenCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsThaiConsonant(inputChar[i]) || isVowel(inputChar[i]))
+                    else if (IsThaiConsonant(characters[i]) || isVowel(characters[i]))
                     {
-                        HandleConsonantOrVowel(outputList, inputChar, ref tmpString, ref i);
+                        HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
                     }
                     else
                     {
-                        outputList.Add(inputChar[i].ToString());
+                        outputList.Add(characters[i].ToString());
                     }
                 }
             }
             return outputList;
         }
 
-        private void HandleEnglishCharacter(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        private void HandleEnglishCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
-            tmpString += inputChar[i].ToString();
-            for (int j = i + 1; j < inputChar.Length; j++)
+            tmpString += characters[i].ToString();
+            for (int j = i + 1; j < characters.Length; j++)
             {
-                if (IsEnglishCharacter(inputChar[j]))
+                if (IsEnglishCharacter(characters[j]))
                 {
-                    tmpString += inputChar[j];
+                    tmpString += characters[j];
                     i = j;
                 }
                 else
@@ -94,14 +94,14 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
-        private void HandleVowelRequireConsonant(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        private void HandleVowelRequireConsonant(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
-            tmpString += inputChar[i].ToString();
-            for (int j = i + 1; j < inputChar.Length; j++)
+            tmpString += characters[i].ToString();
+            for (int j = i + 1; j < characters.Length; j++)
             {
-                if (IsVowelNeedConsonant(inputChar[j]))
+                if (IsVowelNeedConsonant(characters[j]))
                 {
-                    tmpString += inputChar[j];
+                    tmpString += characters[j];
                     i = j;
                 }
                 else
@@ -113,14 +113,14 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
-        private void HandleToken(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        private void HandleTokenCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
-            tmpString += inputChar[i].ToString();
-            for (int j = i + 1; j < inputChar.Length; j++)
+            tmpString += characters[i].ToString();
+            for (int j = i + 1; j < characters.Length; j++)
             {
-                if (IsToken(inputChar[j]))
+                if (IsTokenCharacter(characters[j]))
                 {
-                    tmpString += inputChar[j];
+                    tmpString += characters[j];
                     i = j;
                 }
                 else
@@ -132,14 +132,14 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
-        private void HandleConsonantOrVowel(List<string> outputList, char[] inputChar, ref string tmpString, ref int i)
+        private void HandleConsonantOrVowel(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
-            tmpString += inputChar[i].ToString();
+            tmpString += characters[i].ToString();
             string moretmp = tmpString;
             bool isFound = false;
-            for (int j = i + 1; j < inputChar.Length; j++)
+            for (int j = i + 1; j < characters.Length; j++)
             {
-                moretmp += inputChar[j].ToString();
+                moretmp += characters[j].ToString();
                 if (_dictionary.ContainsKey(moretmp[0]))
                 {
                     foreach (var word in _dictionary[moretmp[0]])
@@ -212,7 +212,7 @@ namespace ThaiStringTokenizer
         private bool IsThaiConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
         private bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
         private bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
-        private bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659; // ่ ้ ๊ ๋
+        private bool IsTokenCharacter(char charNumber) => charNumber >= 3656 && charNumber <= 3659; // ่ ้ ๊ ๋
         private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
