@@ -50,28 +50,31 @@ namespace ThaiStringTokenizer
 
                 for (int i = 0; i < characters.Length; i++)
                 {
-                    if (IsEnglishCharacter(characters[i]))
+                    var character = characters[i];
+
+                    if (IsEnglishCharacter(character))
                     {
                         HandleEnglishCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsVowelNeedConsonant(characters[i]))
+                    else if (IsVowelNeedConsonant(character))
                     {
                         HandleVowelRequireConsonant(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsTokenCharacter(characters[i]))
+                    else if (IsTokenCharacter(character))
                     {
                         HandleTokenCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsThaiConsonant(characters[i]) || isVowel(characters[i]))
+                    else if (IsThaiConsonant(character) || isVowel(character))
                     {
                         HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
                     }
                     else
                     {
-                        outputList.Add(characters[i].ToString());
+                        outputList.Add(character.ToString());
                     }
                 }
             }
+
             return outputList;
         }
 
