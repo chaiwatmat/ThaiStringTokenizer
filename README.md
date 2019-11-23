@@ -1,6 +1,7 @@
 # ThaiStringTokenizer
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/chaiwatmat/ThaiStringTokenizer/blob/master/LICENSE)
+[![build](https://github.com/chaiwatmat/ThaiStringTokenizer/workflows/build/badge.svg?branch=master)](https://github.com/chaiwatmat/ThaiStringTokenizer/workflows/build/badge.svg?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer/badge)](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer)
 [![Nuget Version](https://img.shields.io/nuget/v/ThaiStringTokenizer.svg)](https://www.nuget.org/packages/ThaiStringTokenizer)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/ThaiStringTokenizer.svg)](https://www.nuget.org/packages/ThaiStringTokenizer)
