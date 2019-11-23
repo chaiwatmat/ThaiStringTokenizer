@@ -50,7 +50,7 @@ namespace ThaiStringTokenizer
 
                 for (int i = 0; i < inputChar.Length; i++)
                 {
-                    if (IsEnglishChar(inputChar[i]))
+                    if (IsEnglishCharacter(inputChar[i]))
                     {
                         HandleEnglishCharacter(outputList, inputChar, ref tmpString, ref i);
                     }
@@ -62,7 +62,7 @@ namespace ThaiStringTokenizer
                     {
                         HandleToken(outputList, inputChar, ref tmpString, ref i);
                     }
-                    else if (IsConsonant(inputChar[i]) || isVowel(inputChar[i]))
+                    else if (IsThaiConsonant(inputChar[i]) || isVowel(inputChar[i]))
                     {
                         HandleConsonantOrVowel(outputList, inputChar, ref tmpString, ref i);
                     }
@@ -80,7 +80,7 @@ namespace ThaiStringTokenizer
             tmpString += inputChar[i].ToString();
             for (int j = i + 1; j < inputChar.Length; j++)
             {
-                if (IsEnglishChar(inputChar[j]))
+                if (IsEnglishCharacter(inputChar[j]))
                 {
                     tmpString += inputChar[j];
                     i = j;
@@ -209,10 +209,10 @@ namespace ThaiStringTokenizer
             return lines;
         }
 
-        private bool IsConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
+        private bool IsThaiConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
         private bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
         private bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
         private bool IsToken(char charNumber) => charNumber >= 3656 && charNumber <= 3659; // ่ ้ ๊ ๋
-        private bool IsEnglishChar(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
+        private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
