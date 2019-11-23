@@ -18,7 +18,7 @@ namespace ThaiStringTokenizer
                 characters.AddRange(Signs);
                 characters.AddRange(Digits);
 
-                return new List<int>();
+                return characters;
             }
         }
 

@@ -60,9 +60,9 @@ namespace ThaiStringTokenizer
                     {
                         HandleVowelRequireConsonant(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsTokenCharacter(character))
+                    else if (IsToneMarkCharacter(character))
                     {
-                        HandleTokenCharacter(outputList, characters, ref tmpString, ref i);
+                        HandleToneMarkCharacter(outputList, characters, ref tmpString, ref i);
                     }
                     else if (IsThaiConsonant(character) || isVowel(character))
                     {
@@ -116,12 +116,12 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
-        private void HandleTokenCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
+        private void HandleToneMarkCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
             tmpString += characters[i].ToString();
             for (int j = i + 1; j < characters.Length; j++)
             {
-                if (IsTokenCharacter(characters[j]))
+                if (IsToneMarkCharacter(characters[j]))
                 {
                     tmpString += characters[j];
                     i = j;
@@ -213,9 +213,9 @@ namespace ThaiStringTokenizer
         }
 
         private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
-        private bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
+        private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
         private bool IsVowelNeedConsonant(char charNumber) => ThaiUnicodeCharacter.VowelRequireConsonants.Contains(charNumber);
-        private bool IsTokenCharacter(char charNumber) => ThaiUnicodeCharacter.ToneMarks.Contains(charNumber);
+        private bool IsToneMarkCharacter(char charNumber) => ThaiUnicodeCharacter.ToneMarks.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
