@@ -48,6 +48,20 @@ namespace ThaiStringTokenizer
             }
         }
 
+        public static List<int> VowelRequireConsonants => new List<int>
+        {
+            0x0e30,
+            0x0e31,
+            0x0e32,
+            0x0e33,
+            0x0e34,
+            0x0e35,
+            0x0e36,
+            0x0e37,
+            0x0e38,
+            0x0e39,
+            0x0e45
+        };
         /// ก - ฮ
         public static List<int> Consonants => new List<int>
         {

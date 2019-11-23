@@ -212,10 +212,10 @@ namespace ThaiStringTokenizer
             return lines;
         }
 
-        private bool IsThaiConsonant(char charNumber) => charNumber >= 3585 && charNumber <= 3630;
+        private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
         private bool isVowel(char charNumber) => charNumber >= 3632 && charNumber <= 3653;
-        private bool IsVowelNeedConsonant(char charNumber) => (charNumber >= 3632 && charNumber <= 3641) || charNumber == 3653;
-        private bool IsTokenCharacter(char charNumber) => charNumber >= 3656 && charNumber <= 3659; // ่ ้ ๊ ๋
+        private bool IsVowelNeedConsonant(char charNumber) => ThaiUnicodeCharacter.VowelRequireConsonants.Contains(charNumber);
+        private bool IsTokenCharacter(char charNumber) => ThaiUnicodeCharacter.ToneMarks.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
     }
 }
