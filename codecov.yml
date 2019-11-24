@@ -20,4 +20,5 @@ parsers:
       macro: no
 
 fixes:
+  - "ThaiStringTokenizer/::"
   - "ThaiStringTokenizerTest/::" # reduce root e.g., "before/path/" => "path/"

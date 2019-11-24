@@ -17,7 +17,6 @@ jobs:
           dotnet-version: 2.2.108
       - name: Build with dotnet
         run: |
-          dotnet restore
           dotnet build --configuration Debug
       - name: Run unit test
         run: |
