@@ -2,14 +2,15 @@
 
 dotnet build
 
-dotnet test ThaiStringTokenizerTest \
+dotnet test --no-build \
     /p:CollectCoverage=true \
-    /p:CoverletOutputFormat=\"opencover\" \
+    /p:CoverletOutput=coverage.xml \
+    /p:CoverletOutputFormat=opencover \
     /p:Threshold=80 \
     /p:ThresholdType=branch
 
 cd ThaiStringTokenizerTest
 dotnet reportgenerator \
-    "-reports:coverage.opencover.xml" \
+    "-reports:coverage.xml" \
     "-targetdir:coveragereport" \
     "-reporttypes:HTML;HTMLSummary;SonarQube"

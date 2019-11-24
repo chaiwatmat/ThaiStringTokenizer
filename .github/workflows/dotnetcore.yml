@@ -21,18 +21,20 @@ jobs:
           dotnet build --configuration Debug
       - name: Run unit test
         run: |
-          dotnet test ThaiStringTokenizerTest \
+          dotnet test \
+             --no-build \
             /p:CollectCoverage=true \
-            /p:CoverletOutputFormat=\"opencover\" \
+            /p:CoverletOutput=coverage.xml \
+            /p:CoverletOutputFormat=opencover \
             /p:Threshold=80 \
             /p:ThresholdType=branch
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./ThaiStringTokenizerTest/coverage.opencover.xml
-          flags: unittests
-          name: codecov-umbrella
+          file: ./ThaiStringTokenizerTest/coverage.xml
+          # flags: unittests
+          # name: codecov-umbrella
       # - name: Push to nuget
       #   env:
       #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
