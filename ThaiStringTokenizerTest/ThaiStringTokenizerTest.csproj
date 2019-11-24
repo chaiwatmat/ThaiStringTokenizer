@@ -18,6 +18,7 @@
     <PackageReference Include="Codecov" Version="1.9.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
     <PackageReference Include="dotnet-reportgenerator-cli" Version="4.3.6" />
+    <PackageReference Include="coveralls.io" Version="1.4.2" />
   </ItemGroup>
 
   <ItemGroup>
