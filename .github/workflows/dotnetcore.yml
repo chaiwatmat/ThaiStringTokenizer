@@ -16,15 +16,23 @@ jobs:
         with:
           dotnet-version: 2.2.108
       - name: Build with dotnet
-        run: dotnet build --configuration Debug
+        run: |
+          dotnet restore
+          dotnet build --configuration Debug
       - name: Run unit test
-        run: dotnet test ThaiStringTokenizerTest /p:CollectCoverage=true /p:CoverletOutputFormat=\"opencover\" /p:Threshold=80 /p:ThresholdType=branch
-      - name: prepare codecov
-        run: pwd && cd ThaiStringTokenizerTest && pwd && curl -s https://codecov.io/bash > codecov && chmod +x codecov
-      - name: upload codecoverage result
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: pwd && cd ThaiStringTokenizerTest && pwd && ./codecov -f "coverage.opencover.xml" -t $CODECOV_TOKEN
+        run: |
+          dotnet test ThaiStringTokenizerTest \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=\"opencover\" \
+            /p:Threshold=80 \
+            /p:ThresholdType=branch
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./ThaiStringTokenizerTest/coverage.opencover.xml
+          flags: unittests
+          name: codecov-umbrella
       # - name: Push to nuget
       #   env:
       #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}

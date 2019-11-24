@@ -4,8 +4,8 @@ dotnet build
 
 dotnet test ThaiStringTokenizerTest \
     /p:CollectCoverage=true \
-    /p:CoverletOutputFormat=\"opencover\" \
+    /p:CoverletOutputFormat=opencover \
     /p:Threshold=80 \
     /p:ThresholdType=branch
 
-./ThaiStringTokenizerTest/codecov -f "ThaiStringTokenizerTest/coverage.opencover.xml" -t $CODECOV_TOKEN
+./codecov -f "ThaiStringTokenizerTest/coverage.opencover.xml" -t $CODECOV_TOKEN
