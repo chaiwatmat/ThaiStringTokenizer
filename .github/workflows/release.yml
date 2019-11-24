@@ -1,0 +1,33 @@
+name: release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.108
+      - name: Build with dotnet
+        run: |
+          dotnet build --configuration Debug
+      - name: Run unit test
+        run: |
+          dotnet test \
+             --no-build \
+            /p:CollectCoverage=true \
+            /p:CoverletOutput=coverage.xml \
+            /p:CoverletOutputFormat=opencover \
+            /p:Threshold=80 \
+            /p:ThresholdType=branch
+      - name: Publish to nuget
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+        run: dotnet nuget push ThaiStringTokenizer/bin/Debug/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json

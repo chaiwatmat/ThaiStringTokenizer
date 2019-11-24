@@ -12,5 +12,5 @@ dotnet test --no-build \
 cd ThaiStringTokenizerTest
 dotnet reportgenerator \
     "-reports:coverage.xml" \
-    "-targetdir:coveragereport" \
+    "-targetdir:report" \
     "-reporttypes:HTML;HTMLSummary;SonarQube"
