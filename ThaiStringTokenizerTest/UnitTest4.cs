@@ -38,11 +38,7 @@ namespace ThaiStringTokenizerTest
         {
             var characters = ThaiUnicodeCharacter.Characters;
 
-            Assert.True(characters.Count > 44);
-            foreach (var character in characters)
-            {
-                Console.WriteLine("{0}", character);
-            }
+            Assert.True(characters.Count == 87);
         }
     }
 }
