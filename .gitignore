@@ -43,3 +43,5 @@ bld/
 coveragereport
 codecov
 coverage.opencover.xml
+report/
+coverage.info
