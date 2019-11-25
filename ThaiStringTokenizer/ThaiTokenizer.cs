@@ -14,8 +14,9 @@ namespace ThaiStringTokenizer
 
         public ThaiTokenizer(List<string> words = null, bool removeSpace = true)
         {
-            var assembly = Assembly.GetExecutingAssembly();
+            _removeSpace = removeSpace;
 
+            var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
                 .Single(str => str.EndsWith("ThaiStringTokenizer.dictionary.txt"));
             var stream = assembly.GetManifestResourceStream(resourceName);
@@ -23,16 +24,14 @@ namespace ThaiStringTokenizer
             var textWords = textStreamReader.ReadToEnd();
 
             var originalWords = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
-
             var listWords = new List<string>();
-            listWords.AddRange(originalWords);
-
-            _removeSpace = removeSpace;
 
             if (words != null)
             {
                 listWords.AddRange(words);
             }
+
+            listWords.AddRange(originalWords);
 
             Words = listWords.ToArray();
 

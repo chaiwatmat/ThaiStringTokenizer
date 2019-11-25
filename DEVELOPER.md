@@ -19,7 +19,7 @@ dotnet test --no-build \
 ## Publish to nuget.org
 
 ```sh
-dotnet nuget push ThaiStringTokenizer/bin/Debug/ThaiStringTokenizer.0.3.1.nupkg \
+dotnet nuget push ThaiStringTokenizer/bin/Release/ThaiStringTokenizer.0.4.0.nupkg \
     -k $NUGET_TOKEN \
     -s https://api.nuget.org/v3/index.json
 ```
