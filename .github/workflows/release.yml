@@ -24,7 +24,7 @@ jobs:
           dotnet test \
              --no-build \
             /p:CollectCoverage=true \
-            /p:Threshold=101 \
+            /p:Threshold=80 \
             /p:ThresholdType=branch
       - name: Publish to nuget
         env:

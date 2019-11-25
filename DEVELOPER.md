@@ -10,19 +10,10 @@ dotnet build
 
 ```sh
 dotnet test --no-build \
-    --logger:"trx;LogFileName=Results.trx"
     /p:CollectCoverage=true \
-    /p:CoverletOutputFormat=\"opencover\" \
+    /p:CoverletOutputFormat=lcov \
     /p:Threshold=80 \
     /p:ThresholdType=branch
-```
-
-## Upload coverage to codecov.io
-
-```sh
-curl -s https://codecov.io/bash > codecov
-chmod +x codecov
-./codecov -f "ThaiStringTokenizerTest/coverage.xml" -t $CODECOV_TOKEN
 ```
 
 ## Publish to nuget.org
@@ -38,8 +29,8 @@ dotnet nuget push ThaiStringTokenizer/bin/Debug/ThaiStringTokenizer.0.3.1.nupkg 
 ```sh
 cd ThaiStringTokenizerTest
 dotnet reportgenerator \
-    "-reports:coverage.xml" \
-    "-targetdir:coveragereport" \
+    "-reports:coverage.info" \
+    "-targetdir:report" \
     "-reporttypes:HTML;HTMLSummary;SonarQube"
 ```
 
