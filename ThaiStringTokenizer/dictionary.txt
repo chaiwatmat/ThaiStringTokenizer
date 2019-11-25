@@ -1,10 +1,4 @@
-using System;
-
-namespace ThaiStringTokenizer
-{
-    public static class ThaiWord
-    {
-        public static string Words => @"กกกร
+กกกร
 กกกอด
 กกจ.
 กกช.
@@ -76317,6 +76311,4 @@ namespace ThaiStringTokenizer
 ไฮไลต์
 ไฮ้
 ไฮ
-ๆ";
-    }
-}
+ๆ

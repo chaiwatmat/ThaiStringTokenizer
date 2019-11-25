@@ -5,8 +5,7 @@ dotnet build
 dotnet test --no-build \
     /p:CollectCoverage=true \
     /p:CoverletOutputFormat=lcov \
-    /p:Threshold=80 \
-    /p:ThresholdType=branch
+    /p:Threshold=80
 
 cd ThaiStringTokenizerTest
 dotnet reportgenerator \

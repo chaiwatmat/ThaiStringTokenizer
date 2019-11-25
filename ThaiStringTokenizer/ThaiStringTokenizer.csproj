@@ -13,4 +13,8 @@
     <Description>Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai language</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="dictionary.txt" />
+  </ItemGroup>
+
 </Project>
