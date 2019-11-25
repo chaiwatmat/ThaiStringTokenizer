@@ -18,7 +18,7 @@ jobs:
       - name: Build with dotnet
         run: |
           dotnet build --configuration Debug
-      - name: Run unit test
+      - name: Run unit test result opencover
         run: |
           dotnet test \
              --no-build \
@@ -27,13 +27,29 @@ jobs:
             /p:CoverletOutputFormat=opencover \
             /p:Threshold=80 \
             /p:ThresholdType=branch
+      - name: Run unit test result lcov
+        run: |
+          dotnet test \
+             --no-build \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=lcov \
+            /p:Threshold=80 \
+            /p:ThresholdType=branch
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ThaiStringTokenizerTest/coverage.xml
-          # flags: unittests
-          # name: codecov-umbrella
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./ThaiStringTokenizerTest/coverage.info # optional (default value)
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: "true"
       # - name: Push to nuget
       #   env:
       #     NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
