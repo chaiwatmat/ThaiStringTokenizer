@@ -18,16 +18,15 @@ jobs:
       - name: Build with dotnet
         run: |
           dotnet build --configuration Debug
+          dotnet build --configuration Release
       - name: Run unit test
         run: |
           dotnet test \
              --no-build \
             /p:CollectCoverage=true \
-            /p:CoverletOutput=coverage.xml \
-            /p:CoverletOutputFormat=opencover \
-            /p:Threshold=80 \
+            /p:Threshold=101 \
             /p:ThresholdType=branch
       - name: Publish to nuget
         env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-        run: dotnet nuget push ThaiStringTokenizer/bin/Debug/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ThaiStringTokenizer/bin/Release/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
