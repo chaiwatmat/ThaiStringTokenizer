@@ -2,7 +2,6 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/chaiwatmat/ThaiStringTokenizer/blob/master/LICENSE)
 [![build](https://github.com/chaiwatmat/ThaiStringTokenizer/workflows/build/badge.svg?branch=master)](https://github.com/chaiwatmat/ThaiStringTokenizer/workflows/build/badge.svg?branch=master)
-[![codecov](https://codecov.io/gh/chaiwatmat/ThaiStringTokenizer/branch/master/graph/badge.svg)](https://codecov.io/gh/chaiwatmat/ThaiStringTokenizer)
 [![Coverage Status](https://coveralls.io/repos/github/chaiwatmat/ThaiStringTokenizer/badge.svg)](https://coveralls.io/github/chaiwatmat/ThaiStringTokenizer)
 [![CodeFactor](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer/badge)](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer)
 [![Nuget Version](https://img.shields.io/nuget/v/ThaiStringTokenizer.svg)](https://www.nuget.org/packages/ThaiStringTokenizer)

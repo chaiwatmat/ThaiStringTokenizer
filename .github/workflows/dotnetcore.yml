@@ -18,15 +18,6 @@ jobs:
       - name: Build with dotnet
         run: |
           dotnet build --configuration Debug
-      - name: Run unit test result opencover
-        run: |
-          dotnet test \
-             --no-build \
-            /p:CollectCoverage=true \
-            /p:CoverletOutput=coverage.xml \
-            /p:CoverletOutputFormat=opencover \
-            /p:Threshold=80 \
-            /p:ThresholdType=branch
       - name: Run unit test result lcov
         run: |
           dotnet test \
