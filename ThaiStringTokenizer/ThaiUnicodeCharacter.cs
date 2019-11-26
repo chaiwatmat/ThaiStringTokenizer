@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ThaiStringTokenizer
 {
-    public static class ThaiUnicodeCharacter
+    internal static class ThaiUnicodeCharacter
     {
         public static List<int> Characters
         {
