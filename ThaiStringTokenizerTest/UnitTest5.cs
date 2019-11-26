@@ -76,5 +76,84 @@ namespace ThaiStringTokenizerTest
                 index++;
             });
         }
+
+        [Fact]
+        public void TestSplit_ThaiWithEnglishWithNumber2()
+        {
+            var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234a Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
+            var expected = new List<string>
+            {
+                "Hello",
+                "สวัสดี",
+                "ไทย",
+                "คำ",
+                "อังกฤษ",
+                "คำ",
+                "1234",
+                "a",
+                "Hello",
+                "สวัสดี",
+                "ไทย",
+                "คำ",
+                "อังกฤษ",
+                "คำ",
+                "1234"
+            };
+
+            var tokenizer = new ThaiTokenizer();
+
+            var results = tokenizer.Split(input);
+
+            var index = 0;
+            results.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSplit_ThaiWithNumber()
+        {
+            var input = "สวัสดี1234";
+            var expected = new List<string>
+            {
+                "สวัสดี",
+                "1234"
+            };
+
+            var tokenizer = new ThaiTokenizer();
+
+            var results = tokenizer.Split(input);
+
+            var index = 0;
+            results.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void TestSplit_EnglishWithNumber()
+        {
+            var input = "Hello1234";
+            var expected = new List<string>
+            {
+                "Hello",
+                "1234"
+            };
+
+            var tokenizer = new ThaiTokenizer();
+
+            var results = tokenizer.Split(input);
+
+            var index = 0;
+            results.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
     }
 }
