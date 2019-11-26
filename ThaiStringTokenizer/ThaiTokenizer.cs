@@ -64,6 +64,10 @@ namespace ThaiStringTokenizer
                     {
                         HandleEnglishCharacter(outputList, characters, ref tmpString, ref i);
                     }
+                    else if (IsNumberCharacter(character))
+                    {
+                        HandleNumberCharacter(outputList, characters, ref tmpString, ref i);
+                    }
                     else if (IsThaiConsonant(character) || isVowel(character))
                     {
                         HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
@@ -145,6 +149,25 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
+        private void HandleNumberCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
+        {
+            tmpString += characters[i].ToString();
+            for (int j = i + 1; j < characters.Length; j++)
+            {
+                if (IsNumberCharacter(characters[j]))
+                {
+                    tmpString += characters[j];
+                    i = j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            outputList.Add(tmpString);
+            tmpString = "";
+        }
+
         private void HandleConsonantOrVowel(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
             tmpString += characters[i].ToString();
@@ -177,5 +200,6 @@ namespace ThaiStringTokenizer
         private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
         private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
+        private bool IsNumberCharacter(char charNumber) => (charNumber >= 48 && charNumber <= 57);
     }
 }
