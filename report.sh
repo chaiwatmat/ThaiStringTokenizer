@@ -1,5 +1,13 @@
 #!/bin/bash
 
+rm -rf \
+    ThaiStringTokenizer/bin \
+    ThaiStringTokenizer/obj \
+    ThaiStringTokenizerTest/bin \
+    ThaiStringTokenizerTest/obj \
+    ThaiStringTokenizerTest/report \
+    ThaiStringTokenizerTest/coverage.info
+
 dotnet build
 
 dotnet test --no-build \
@@ -12,3 +20,6 @@ dotnet reportgenerator \
     "-reports:coverage.info" \
     "-targetdir:report" \
     "-reporttypes:HTML;HTMLSummary;SonarQube"
+
+cd report
+php -S localhost:8000
