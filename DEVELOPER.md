@@ -34,7 +34,19 @@ dotnet reportgenerator \
     "-reporttypes:HTML;HTMLSummary;SonarQube"
 ```
 
-## Thai unicode
+## Unicode block
+
+<https://en.wikipedia.org/wiki/Unicode_block>
+
+## List of unicode characters
+
+<https://en.wikipedia.org/wiki/List_of_Unicode_characters>
+
+### Basic character
+
+<https://en.wikipedia.org/wiki/Basic_Latin_(Unicode_block)>
+
+### Thai unicode
 
 <https://en.wikipedia.org/wiki/Thai_(Unicode_block)>
 
