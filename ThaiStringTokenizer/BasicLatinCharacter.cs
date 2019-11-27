@@ -44,6 +44,7 @@ namespace ThaiStringTokenizer
             0x0058,
             0x0059,
             0x005a,
+
             0x0061,
             0x0062,
             0x0063,

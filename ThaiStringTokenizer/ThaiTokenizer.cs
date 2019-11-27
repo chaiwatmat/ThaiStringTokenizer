@@ -199,7 +199,7 @@ namespace ThaiStringTokenizer
 
         private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
         private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
-        private bool IsEnglishCharacter(char charNumber) => (charNumber >= 65 && charNumber <= 90) || (charNumber >= 97 && charNumber <= 122);
-        private bool IsNumberCharacter(char charNumber) => (charNumber >= 48 && charNumber <= 57);
+        private bool IsEnglishCharacter(char charNumber) => BasicLatinCharacter.Alphabets.Contains(charNumber);
+        private bool IsNumberCharacter(char charNumber) => BasicLatinCharacter.Digits.Contains(charNumber);
     }
 }
