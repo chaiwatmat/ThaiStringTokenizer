@@ -45,3 +45,6 @@ codecov
 coverage.opencover.xml
 report/
 coverage.info
+
+# Cakebuild
+tools/
