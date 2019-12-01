@@ -87,7 +87,7 @@ namespace ThaiStringTokenizer
             var lines = new List<string>();
             var line = "";
             var lineCount = 0;
-            var consonants = new List<ConsonantCharacter>();
+            var consonants = new List<ThaiCountableCharacter>();
             var words = Split(input);
             var maxIndex = words.Count - 1;
 
@@ -95,8 +95,8 @@ namespace ThaiStringTokenizer
             {
                 var word = words[i];
 
-                var consonant = new ConsonantCharacter(word);
-                lineCount += consonant.ConsonantCount;
+                var consonant = new ThaiCountableCharacter(word);
+                lineCount += consonant.Countable;
 
                 if (lineCount < length)
                 {
@@ -117,7 +117,7 @@ namespace ThaiStringTokenizer
                 else
                 {
                     lines.Add(line);
-                    lineCount = consonant.ConsonantCount;
+                    lineCount = consonant.Countable;
                     line = word;
 
                     if (i == maxIndex)
