@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ThaiStringTokenizer;
+using ThaiStringTokenizer.Characters;
 using Xunit;
 
 namespace ThaiStringTokenizerTest

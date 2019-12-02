@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ThaiStringTokenizer
+namespace ThaiStringTokenizer.Characters
 {
     public static class ThaiUnicodeCharacter
     {

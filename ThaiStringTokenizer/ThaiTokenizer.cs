@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using ThaiStringTokenizer.Characters;
 using ThaiStringTokenizer.Models;
 
 namespace ThaiStringTokenizer
