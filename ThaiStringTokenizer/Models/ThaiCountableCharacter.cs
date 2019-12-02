@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ThaiStringTokenizer
+namespace ThaiStringTokenizer.Models
 {
     internal class ThaiCharacterCounter
     {
