@@ -87,7 +87,7 @@ namespace ThaiStringTokenizer
             var lines = new List<string>();
             var line = "";
             var lineCount = 0;
-            var consonants = new List<ThaiCountableCharacter>();
+            var consonants = new List<ThaiCharacterCounter>();
             var words = Split(input);
             var maxIndex = words.Count - 1;
 
@@ -95,7 +95,7 @@ namespace ThaiStringTokenizer
             {
                 var word = words[i];
 
-                var consonant = new ThaiCountableCharacter(word);
+                var consonant = new ThaiCharacterCounter(word);
                 lineCount += consonant.Countable;
 
                 if (lineCount < length)
@@ -128,6 +128,22 @@ namespace ThaiStringTokenizer
             }
 
             return lines;
+        }
+
+        public List<ThaiStringResponse> SubThaiStringAndCount(string input, int length = int.MaxValue)
+        {
+            var results = SubThaiString(input, length);
+            var responses = new List<ThaiStringResponse>();
+
+            foreach (var sentence in results)
+            {
+                var consonant = new ThaiCharacterCounter(sentence);
+                var response = new ThaiStringResponse { Words = sentence, Countable = consonant.Countable };
+
+                responses.Add(response);
+            }
+
+            return responses;
         }
 
         private void HandleEnglishCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
