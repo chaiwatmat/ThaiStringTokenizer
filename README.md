@@ -42,7 +42,7 @@ paket add ThaiStringTokenizer
 
 ```cs
 using System.Collections.Generic;
-using ThaiStringTokenizer
+using ThaiStringTokenizer;
 
 public void SplitWord()
 {
@@ -57,7 +57,7 @@ public void SplitWord()
 
 ```cs
 using System.Collections.Generic;
-using ThaiStringTokenizer
+using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
@@ -73,7 +73,7 @@ public void SubstringThaiStyle()
 
 ```cs
 using System.Collections.Generic;
-using ThaiStringTokenizer
+using ThaiStringTokenizer;
 using ThaiStringTokenizer.Models;
 
 public void SubstringThaiStyle()
@@ -99,7 +99,7 @@ public void SubstringThaiStyle()
 
 ```cs
 using System.Collections.Generic;
-using ThaiStringTokenizer
+using ThaiStringTokenizer;
 
 public void SplitWord()
 {
@@ -115,7 +115,7 @@ public void SplitWord()
 
 ```cs
 using System.Collections.Generic;
-using ThaiStringTokenizer
+using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
