@@ -69,6 +69,32 @@ public void SubstringThaiStyle()
 }
 ```
 
+### SubThaiStringAndCount
+
+```cs
+using System.Collections.Generic;
+using ThaiStringTokenizer
+using ThaiStringTokenizer.Models;
+
+public void SubstringThaiStyle()
+{
+    var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
+
+    var tokenizer = new ThaiTokenizer(removeSpace: false);
+    var results = tokenizer.SubThaiStringAndCount(input, 24);
+
+    /*
+    results will be :
+
+    List<ThaiStringResponse>
+    {
+        new ThaiStringResponse{ Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว", Countable = 24},
+        new ThaiStringResponse{ Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า", Countable = 21}
+    };
+    */
+}
+```
+
 ### Append custom dictionary
 
 ```cs
