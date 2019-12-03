@@ -50,7 +50,6 @@ namespace ThaiStringTokenizerTest
 
                 Assert.Equal(expectedWord, actualWord);
                 Assert.Equal(expecptedCount, actualCount);
-
             }
         }
     }
