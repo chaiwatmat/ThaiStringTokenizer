@@ -35,5 +35,14 @@ namespace ThaiStringTokenizerTest
                 "1234"
             };
         }
+
+        public static List<string> GetExpectedResult3()
+        {
+            return new List<string>
+            {
+                "สบาย",
+                "มาก"
+            };
+        }
     }
 }
