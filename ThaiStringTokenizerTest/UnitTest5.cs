@@ -54,19 +54,9 @@ namespace ThaiStringTokenizerTest
         public void TestSplit_ThaiWithEnglishWithNumber()
         {
             var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
-            var expected = new List<string>
-            {
-                "Hello",
-                "สวัสดี",
-                "ไทย",
-                "คำ",
-                "อังกฤษ",
-                "คำ",
-                "1234"
-            };
+            var expected = GlobalExpectedResult.GetExpectedResult2();
 
             var tokenizer = new ThaiTokenizer();
-
             var results = tokenizer.Split(input);
 
             var index = 0;
@@ -81,27 +71,15 @@ namespace ThaiStringTokenizerTest
         public void TestSplit_ThaiWithEnglishWithNumber2()
         {
             var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234a Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
-            var expected = new List<string>
-            {
-                "Hello",
-                "สวัสดี",
-                "ไทย",
-                "คำ",
-                "อังกฤษ",
-                "คำ",
-                "1234",
-                "a",
-                "Hello",
-                "สวัสดี",
-                "ไทย",
-                "คำ",
-                "อังกฤษ",
-                "คำ",
-                "1234"
-            };
+
+            var expected0 = GlobalExpectedResult.GetExpectedResult2();
+            var expected1 = new List<string> { "a" };
+
+            var expected = expected0;
+            expected.AddRange(expected1);
+            expected.AddRange(expected0);
 
             var tokenizer = new ThaiTokenizer();
-
             var results = tokenizer.Split(input);
 
             var index = 0;

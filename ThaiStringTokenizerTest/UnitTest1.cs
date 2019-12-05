@@ -14,21 +14,7 @@ namespace ThaiStringTokenizerTest
             ThaiTokenizer tokenizer = new ThaiTokenizer();
             string test = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
             var result = tokenizer.Split(test);
-
-            var expected = new List<string>
-            {
-                "ปลา",
-                "ที่",
-                "ใหญ่",
-                "ที่สุด",
-                "ใน",
-                "โลก",
-                "คือ",
-                "ปารีส",
-                "ชุบ",
-                "แป้ง",
-                "ทอด"
-            };
+            var expected = GlobalExpectedResult.GetExpectedResult1();
 
             Assert.Equal(expected.Count, result.Count);
 
@@ -90,23 +76,13 @@ namespace ThaiStringTokenizerTest
             string test = "หวักลีหวัดดีปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอดเชอแตม";
             var result = tokenizer.Split(test);
 
-            var expected = new List<string>
-            {
-                "หวักลี",
-                "หวัดดี",
-                "ปลา",
-                "ที่",
-                "ใหญ่",
-                "ที่สุด",
-                "ใน",
-                "โลก",
-                "คือ",
-                "ปารีส",
-                "ชุบ",
-                "แป้ง",
-                "ทอด",
-                "เชอแตม"
-            };
+            var expected0 = new List<string> { "หวักลี", "หวัดดี" };
+            var expected1 = GlobalExpectedResult.GetExpectedResult1();
+            var expected2 = new List<string> { "เชอแตม" };
+
+            var expected = expected0;
+            expected.AddRange(expected1);
+            expected.AddRange(expected2);
 
             Assert.Equal(expected.Count, result.Count);
 
