@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using ThaiStringTokenizer.Characters;
 using ThaiStringTokenizer.Models;
 
@@ -89,7 +88,6 @@ namespace ThaiStringTokenizer
             var lines = new List<string>();
             var line = "";
             var lineCount = 0;
-            var consonants = new List<ThaiCharacterCounter>();
             var words = Split(input);
             var maxIndex = words.Count - 1;
 
@@ -97,7 +95,7 @@ namespace ThaiStringTokenizer
             {
                 var word = words[i];
 
-                var consonant = new ThaiCharacterCounter(word);
+                var consonant = new ThaiStringResponse { Words = word };
                 lineCount += consonant.Countable;
 
                 if (lineCount < length)
@@ -139,8 +137,7 @@ namespace ThaiStringTokenizer
 
             foreach (var sentence in results)
             {
-                var consonant = new ThaiCharacterCounter(sentence);
-                var response = new ThaiStringResponse { Words = sentence, Countable = consonant.Countable };
+                var response = new ThaiStringResponse { Words = sentence };
 
                 responses.Add(response);
             }

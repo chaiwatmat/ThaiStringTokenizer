@@ -34,8 +34,8 @@ namespace ThaiStringTokenizerTest
 
             var expectedResults = new List<ThaiStringResponse>
             {
-                new ThaiStringResponse{ Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว", Countable = 24},
-                new ThaiStringResponse{ Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า", Countable = 21}
+                new ThaiStringResponse{ Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว"},
+                new ThaiStringResponse{ Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า"}
             };
 
             Assert.Equal(expectedResults.Count, results.Count);
@@ -49,6 +49,30 @@ namespace ThaiStringTokenizerTest
                 var actualCount = results[i].Countable;
 
                 Assert.Equal(expectedWord, actualWord);
+                Assert.Equal(expecptedCount, actualCount);
+            }
+        }
+
+
+        [Fact]
+        public void TestSubThaiStringAndCount_CheckLength()
+        {
+            var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
+
+            var tokenizer = new ThaiTokenizer(removeSpace: false);
+            var results = tokenizer.SubThaiStringAndCount(input, 24);
+
+            var expectedResults = new List<int> { 24, 21 };
+
+            Assert.Equal(expectedResults.Count, results.Count);
+
+            for (var i = 0; i < expectedResults.Count; i++)
+            {
+                var expecptedCount = expectedResults[i];
+
+                var actualWord = results[i].Words;
+                var actualCount = results[i].Countable;
+
                 Assert.Equal(expecptedCount, actualCount);
             }
         }
