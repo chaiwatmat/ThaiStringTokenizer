@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using ThaiStringTokenizer;
 using ThaiStringTokenizer.Models;
 using Xunit;
@@ -52,7 +50,6 @@ namespace ThaiStringTokenizerTest
                 Assert.Equal(expecptedCount, actualCount);
             }
         }
-
 
         [Fact]
         public void TestSubThaiStringAndCount_CheckLength()
