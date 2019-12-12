@@ -15,25 +15,25 @@ Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai langu
 ### Package Manager
 
 ```bat
-Install-Package ThaiStringTokenizer -Version 0.5.0
+Install-Package ThaiStringTokenizer -Version 0.5.1
 ```
 
 ### .NET CLI
 
 ```sh
-dotnet add package ThaiStringTokenizer --version 0.5.0
+dotnet add package ThaiStringTokenizer --version 0.5.1
 ```
 
 ### PackageReference
 
 ```xml
-<PackageReference Include="ThaiStringTokenizer" Version="0.5.0" />
+<PackageReference Include="ThaiStringTokenizer" Version="0.5.1" />
 ```
 
 ### Paket CLI
 
 ```sh
-paket add ThaiStringTokenizer --version 0.5.0
+paket add ThaiStringTokenizer --version 0.5.1
 ```
 
 ## Usage
@@ -41,37 +41,69 @@ paket add ThaiStringTokenizer --version 0.5.0
 ### Split Thai word
 
 ```cs
+using System;
 using System.Collections.Generic;
 using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    ThaiTokenizer tokenizer = new ThaiTokenizer();
-    string text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
-    List<string> result = tokenizer.Split(text);
-    //result will be => ["ปลา", "ที่", "ใหญ่", "ที่สุด", "ใน", "โลก", "คือ", "ปารีส", "ชุบ", "แป้ง", "ทอด"]
+    var tokenizer = new ThaiTokenizer();
+    var text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+    var results = tokenizer.Split(text);
+
+    foreach(var result in results){
+        Console.WriteLine(result);
+    }
 }
+```
+
+#### result1
+
+```text
+ปลา
+ที่
+ใหญ่
+ที่สุด
+ใน
+โลก
+คือ
+ปารีส
+ชุบ
+แป้ง
+ทอด
 ```
 
 ### SubThaiString
 
 ```cs
+using System;
 using System.Collections.Generic;
 using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
-    ThaiTokenizer tokenizer = new ThaiTokenizer();
-    string text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+    var tokenizer = new ThaiTokenizer();
+    var text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
     var maxLenght = 20;
-    List<string> result = tokenizer.SubThaiString(text, maxLength);
-    //result will be => ["ปลาที่ใหญ่ที่สุดในโลกคือ", "ปารีสชุบแป้งทอด"]
+    var result = tokenizer.SubThaiString(text, maxLength);
+
+    foreach(var result in results){
+        Console.WriteLine(result);
+    }
 }
+```
+
+#### result2
+
+```text
+ปลาที่ใหญ่ที่สุดในโลกคือ
+ปารีสชุบแป้งทอด
 ```
 
 ### SubThaiStringAndCount
 
 ```cs
+using System;
 using System.Collections.Generic;
 using ThaiStringTokenizer;
 using ThaiStringTokenizer.Models;
@@ -83,48 +115,82 @@ public void SubstringThaiStyle()
     var tokenizer = new ThaiTokenizer(removeSpace: false);
     var results = tokenizer.SubThaiStringAndCount(input, 24);
 
-    /*
-    results will be :
-
-    List<ThaiStringResponse>
-    {
-        new ThaiStringResponse{ Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว", Countable = 24},
-        new ThaiStringResponse{ Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า", Countable = 21}
-    };
-    */
+    foreach(var result in results){
+        Console.WriteLine("word = {0}, countable = {1}, uncountable = {2}", result.Words, result.Countable, result.Uncountable);
+    }
 }
+```
+
+#### result3
+
+```text
+Words = ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว, Countable = 24, Uncountable = 9
+Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า", Countable = 21, Uncountable = 7
 ```
 
 ### Append custom dictionary
 
 ```cs
+using System;
 using System.Collections.Generic;
 using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    List<string> customDictionary = new List<string>{ "หวัดดี", "หวักลี", "เชอแตม" };
-    ThaiTokenizer tokenizer = new ThaiTokenizer(customDictionary);
-    string text = "หวักลีหวัดดีปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอดเชอแตม";
-    List<string> result = tokenizer.Split(text);
-    //result will be => ["หวักลี", "หวัดดี", "ปลา", "ที่", "ใหญ่", "ที่สุด", "ใน", "โลก", "คือ", "ปารีส", "ชุบ", "แป้ง", "ทอด", "เชอแตม"]
+    var customDictionary = new List<string>{ "หวัดดี", "หวักลี", "เชอแตม" };
+    var tokenizer = new ThaiTokenizer(customDictionary);
+    var text = "หวักลีหวัดดีปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอดเชอแตม";
+    var results = tokenizer.Split(text);
+
+    foreach(var result in results){
+        Console.WriteLine(result);
+    }
 }
+```
+
+#### result4
+
+```text
+หวักลี
+หวัดดี
+ปลา
+ที่
+ใหญ่
+ที่สุด
+ใน
+โลก
+คือ
+ปารีส
+ชุบ
+แป้ง
+ทอด
+เชอแตม
 ```
 
 ### Do not remove space
 
 ```cs
+using System;
 using System.Collections.Generic;
 using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
-    ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
-    string text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
+    var tokenizer = new ThaiTokenizer(removeSpace: false);
+    var text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
     var maxLenght = 50;
-    List<string> result = tokenizer.SubThaiString(text, maxLength);
-    //result will be => ["อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"]
+    var results = tokenizer.SubThaiString(text, maxLength);
+
+    foreach(var result in results){
+        Console.WriteLine(result);
+    }
 }
+```
+
+#### result5
+
+```text
+อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์
 ```
 
 ## License
