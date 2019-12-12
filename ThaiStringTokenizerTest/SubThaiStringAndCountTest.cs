@@ -17,9 +17,11 @@ namespace ThaiStringTokenizerTest
 
             var expectedList = 1;
             var expectedCount = 45;
+            var expectedUncount = 16;
 
             Assert.Equal(expectedList, results.Count);
             Assert.Equal(expectedCount, results[0].Countable);
+            Assert.Equal(expectedUncount, results[0].Uncountable);
         }
 
         [Fact]
