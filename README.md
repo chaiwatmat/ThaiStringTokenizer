@@ -125,7 +125,7 @@ public void SubstringThaiStyle()
 
 ```text
 Words = ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว, Countable = 24, Uncountable = 9
-Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า", Countable = 21, Uncountable = 7
+Words =  แล้วเขาจะรู้ว่ารักหรือเปล่า, Countable = 21, Uncountable = 7
 ```
 
 ### Append custom dictionary
