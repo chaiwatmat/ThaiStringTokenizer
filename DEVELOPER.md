@@ -50,6 +50,8 @@ dotnet reportgenerator \
 
 <https://en.wikipedia.org/wiki/Thai_(Unicode_block)>
 
+<https://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:Script=Thai:]>
+
 ## More info
 
 <https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli>
