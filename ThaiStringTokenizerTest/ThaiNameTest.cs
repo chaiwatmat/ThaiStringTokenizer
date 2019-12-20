@@ -13,7 +13,7 @@ namespace ThaiStringTokenizerTest
         public void SampleTest1()
         {
             var input = "โชติกานต์";
-            var expected = new List<string> { "โชติกา", "นต์" };
+            var expected = new List<string> { "โชติกานต์" };
 
             var tokenizer = new ThaiTokenizer(removeSpace: false);
             var results = tokenizer.Split(input);

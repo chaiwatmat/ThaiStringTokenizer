@@ -69,7 +69,7 @@ namespace ThaiStringTokenizer
                     {
                         HandleNumberCharacter(outputList, characters, ref tmpString, ref i);
                     }
-                    else if (IsThaiConsonant(character) || isVowel(character))
+                    else if (IsThaiCharacter(character))
                     {
                         HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
                     }
@@ -186,34 +186,45 @@ namespace ThaiStringTokenizer
         private void HandleConsonantOrVowel(List<string> outputList, char[] characters, ref string tmpString, ref int i)
         {
             tmpString += characters[i].ToString();
-            string moretmp = tmpString;
+
             bool isFound = false;
+            string moretmp = tmpString;
+
             for (int j = i + 1; j < characters.Length; j++)
             {
                 moretmp += characters[j].ToString();
-                if (_dictionary.ContainsKey(moretmp[0]))
+                var firstCharacter = moretmp[0];
+
+                if (!_dictionary.ContainsKey(firstCharacter)) { continue; }
+
+                foreach (var word in _dictionary[firstCharacter])
                 {
-                    foreach (var word in _dictionary[moretmp[0]])
+                    if (word == moretmp)
                     {
-                        if (word == moretmp)
-                        {
-                            tmpString = moretmp;
-                            i = j;
-                            isFound = true;
-                            break;
-                        }
+                        tmpString = moretmp;
+                        i = j;
+                        isFound = true;
+                        break;
                     }
                 }
             }
+
             if (isFound)
             {
                 outputList.Add(tmpString);
+            }
+            else
+            {
+                var lastOutputIndex = outputList.Count - 1;
+
+                outputList[lastOutputIndex] += tmpString;
             }
             tmpString = "";
         }
 
         private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
         private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
+        private bool IsThaiCharacter(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => BasicLatinCharacter.Alphabets.Contains(charNumber);
         private bool IsNumberCharacter(char charNumber) => BasicLatinCharacter.Digits.Contains(charNumber);
     }
