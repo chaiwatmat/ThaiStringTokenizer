@@ -9,12 +9,8 @@ namespace ThaiStringTokenizerTest
 {
     public class ThaiNameTest
     {
-        [Fact]
-        public void SampleTest1()
+        private static void Verify(string input, List<string> expected)
         {
-            var input = "โชติกานต์ ศรีสุวรรณ์";
-            var expected = new List<string> { "โชติกานต์", " ", "ศรีสุวรรณ์" };
-
             var tokenizer = new ThaiTokenizer(removeSpace: false);
             var results = tokenizer.Split(input);
 
@@ -27,6 +23,14 @@ namespace ThaiStringTokenizerTest
             });
 
             Console.WriteLine("==============");
+        }
+
+        [Fact]
+        public void SampleTest1()
+        {
+            var input = "โชติกานต์ ศรีสุวรรณ์";
+            var expected = new List<string> { "โชติกานต์", " ", "ศรีสุวรรณ์" };
+            Verify(input, expected);
         }
 
         [Fact]
@@ -34,19 +38,7 @@ namespace ThaiStringTokenizerTest
         {
             var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ สงขลา";
             var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ สงขลา" };
-
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
-            var results = tokenizer.Split(input);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Console.WriteLine(x);
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-
-            Console.WriteLine("==============");
+            Verify(input, expected);
         }
 
         [Fact]
@@ -54,19 +46,7 @@ namespace ThaiStringTokenizerTest
         {
             var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ นคร";
             var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ นคร" };
-
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
-            var results = tokenizer.Split(input);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Console.WriteLine(x);
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-
-            Console.WriteLine("==============");
+            Verify(input, expected);
         }
 
         [Fact]
@@ -74,19 +54,7 @@ namespace ThaiStringTokenizerTest
         {
             var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ นครศรีธรรมราช";
             var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ นคร", "ศรีธรรม", "ราช" };
-
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
-            var results = tokenizer.Split(input);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Console.WriteLine(x);
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-
-            Console.WriteLine("==============");
+            Verify(input, expected);
         }
     }
 }
