@@ -12,8 +12,8 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void SampleTest1()
         {
-            var input = "โชติกานต์";
-            var expected = new List<string> { "โชติกานต์" };
+            var input = "โชติกานต์ ศรีสุวรรณ์";
+            var expected = new List<string> { "โชติกานต์", " ", "ศรีสุวรรณ์" };
 
             var tokenizer = new ThaiTokenizer(removeSpace: false);
             var results = tokenizer.Split(input);
@@ -21,9 +21,12 @@ namespace ThaiStringTokenizerTest
             var index = 0;
             results.ForEach(x =>
             {
+                Console.WriteLine(x);
                 Assert.Equal(expected[index], x);
                 index++;
             });
+
+            Console.WriteLine("==============");
         }
 
         [Fact]
