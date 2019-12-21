@@ -222,8 +222,6 @@ namespace ThaiStringTokenizer
             tmpString = "";
         }
 
-        private bool IsThaiConsonant(char charNumber) => ThaiUnicodeCharacter.Consonants.Contains(charNumber);
-        private bool isVowel(char charNumber) => ThaiUnicodeCharacter.Vowels.Contains(charNumber);
         private bool IsThaiCharacter(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
         private bool IsEnglishCharacter(char charNumber) => BasicLatinCharacter.Alphabets.Contains(charNumber);
         private bool IsNumberCharacter(char charNumber) => BasicLatinCharacter.Digits.Contains(charNumber);
