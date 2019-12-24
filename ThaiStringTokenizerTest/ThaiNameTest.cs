@@ -64,5 +64,13 @@ namespace ThaiStringTokenizerTest
             var expected = new List<string> { "ศิ", "ริ", "วิ", "มล" };
             Verify(input, expected, true);
         }
+
+        [Fact]
+        public void SampleTest6()
+        {
+            var input = "นางสาว ศิริวิมล ยิ่งเจริญ";
+            var expected = new List<string> { "นาง", "สาว", " ", "ศิ", "ริ", "วิ", "มล", " ", "ยิ่ง", "เจ", "ริญ" };
+            Verify(input, expected, true);
+        }
     }
 }

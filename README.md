@@ -15,25 +15,25 @@ Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai langu
 ### Package Manager
 
 ```bat
-Install-Package ThaiStringTokenizer -Version 0.6.0
+Install-Package ThaiStringTokenizer -Version 0.6.1
 ```
 
 ### .NET CLI
 
 ```sh
-dotnet add package ThaiStringTokenizer --version 0.6.0
+dotnet add package ThaiStringTokenizer --version 0.6.1
 ```
 
 ### PackageReference
 
 ```xml
-<PackageReference Include="ThaiStringTokenizer" Version="0.6.0" />
+<PackageReference Include="ThaiStringTokenizer" Version="0.6.1" />
 ```
 
 ### Paket CLI
 
 ```sh
-paket add ThaiStringTokenizer --version 0.6.0
+paket add ThaiStringTokenizer --version 0.6.1
 ```
 
 ## Usage
@@ -191,6 +191,34 @@ public void SubstringThaiStyle()
 
 ```text
 อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์
+```
+
+### Short word priority first
+
+```cs
+using System;
+using System.Collections.Generic;
+using ThaiStringTokenizer;
+
+public void SplitWord()
+{
+    var tokenizer = new ThaiTokenizer(shortWordFirst: true);
+    var text = "ศิริวิมล";
+    var results = tokenizer.Split(text);
+
+    foreach(var result in results){
+        Console.WriteLine(result);
+    }
+}
+```
+
+#### result6
+
+```text
+ศิ
+ริ
+วิ
+มล
 ```
 
 ## License
