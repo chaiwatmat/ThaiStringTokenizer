@@ -9,9 +9,9 @@ namespace ThaiStringTokenizerTest
 {
     public class ThaiNameTest
     {
-        private static void Verify(string input, List<string> expected)
+        private static void Verify(string input, List<string> expected, bool shortWordFirst = false)
         {
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
+            var tokenizer = new ThaiTokenizer(removeSpace: false, shortWordFirst: shortWordFirst);
             var results = tokenizer.Split(input);
 
             var index = 0;
@@ -55,6 +55,14 @@ namespace ThaiStringTokenizerTest
             var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ นครศรีธรรมราช";
             var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ นคร", "ศรีธรรม", "ราช" };
             Verify(input, expected);
+        }
+
+        [Fact]
+        public void SampleTest5()
+        {
+            var input = "ศิริวิมล";
+            var expected = new List<string> { "ศิริ", "วิมล" };
+            Verify(input, expected, true);
         }
     }
 }

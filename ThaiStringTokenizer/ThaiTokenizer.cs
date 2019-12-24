@@ -12,10 +12,12 @@ namespace ThaiStringTokenizer
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
         private bool _removeSpace;
+        private bool _shortWordFirst;
 
-        public ThaiTokenizer(List<string> words = null, bool removeSpace = true)
+        public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
         {
             _removeSpace = removeSpace;
+            _shortWordFirst = shortWordFirst;
 
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
