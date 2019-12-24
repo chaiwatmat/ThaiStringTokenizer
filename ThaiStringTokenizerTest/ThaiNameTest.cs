@@ -61,7 +61,7 @@ namespace ThaiStringTokenizerTest
         public void SampleTest5()
         {
             var input = "ศิริวิมล";
-            var expected = new List<string> { "ศิริ", "วิมล" };
+            var expected = new List<string> { "ศิ", "ริ", "วิ", "มล" };
             Verify(input, expected, true);
         }
     }

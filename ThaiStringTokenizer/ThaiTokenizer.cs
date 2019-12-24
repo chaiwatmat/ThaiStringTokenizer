@@ -209,6 +209,11 @@ namespace ThaiStringTokenizer
                         break;
                     }
                 }
+
+                if (_shortWordFirst)
+                {
+                    break;
+                }
             }
 
             if (isFound)
