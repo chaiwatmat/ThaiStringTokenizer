@@ -9,14 +9,10 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : CharacterHandler
     {
-        private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
-        private bool _removeSpace;
-        private bool _shortWordFirst;
-
         public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
         {
-            _removeSpace = removeSpace;
-            _shortWordFirst = shortWordFirst;
+            RemoveSpace = removeSpace;
+            ShortWordFirst = shortWordFirst;
 
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
@@ -39,19 +35,18 @@ namespace ThaiStringTokenizer
 
             foreach (var word in Words)
             {
-                if (!_dictionary.ContainsKey(word[0]))
+                if (!Dictionary.ContainsKey(word[0]))
                 {
-                    _dictionary.Add(word[0], new List<string>());
+                    Dictionary.Add(word[0], new List<string>());
                 }
-                _dictionary[word[0]].Add(word);
+                Dictionary[word[0]].Add(word);
             }
         }
 
-        public string[] Words { get; private set; }
         public List<string> Split(string input)
         {
             var outputList = new List<string>();
-            var words = _removeSpace ? input.Split(' ') : new string[] { input };
+            var words = RemoveSpace ? input.Split(' ') : new string[] { input };
 
             foreach (string word in words)
             {
@@ -196,9 +191,9 @@ namespace ThaiStringTokenizer
                 moretmp += characters[j].ToString();
                 var firstCharacter = moretmp[0];
 
-                if (!_dictionary.ContainsKey(firstCharacter)) { continue; }
+                if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
-                foreach (var word in _dictionary[firstCharacter])
+                foreach (var word in Dictionary[firstCharacter])
                 {
                     if (word == moretmp)
                     {
@@ -209,7 +204,7 @@ namespace ThaiStringTokenizer
                     }
                 }
 
-                if (_shortWordFirst)
+                if (ShortWordFirst)
                 {
                     break;
                 }
