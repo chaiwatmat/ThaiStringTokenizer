@@ -34,8 +34,8 @@ namespace ThaiStringTokenizerTest
 
             var expectedResults = new List<ThaiStringResponse>
             {
-                new ThaiStringResponse{ Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว"},
-                new ThaiStringResponse{ Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า"}
+                new ThaiStringResponse { Words = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว" },
+                new ThaiStringResponse { Words = " แล้วเขาจะรู้ว่ารักหรือเปล่า" }
             };
 
             Assert.Equal(expectedResults.Count, results.Count);

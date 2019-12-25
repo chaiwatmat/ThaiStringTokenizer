@@ -72,5 +72,13 @@ namespace ThaiStringTokenizerTest
             var expected = new List<string> { "นาง", "สาว", " ", "ศิ", "ริ", "วิ", "มล", " ", "ยิ่ง", "เจ", "ริญ" };
             Verify(input, expected, true);
         }
+
+        [Fact]
+        public void SampleTest7()
+        {
+            var input = "เจริญยิ่ง การช่าง";
+            var expected = new List<string> { "เจ", "ริญ", "ยิ่ง", " ", "การช่าง" };
+            Verify(input, expected, true);
+        }
     }
 }

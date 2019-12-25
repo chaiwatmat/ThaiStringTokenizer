@@ -78,7 +78,8 @@ namespace ThaiStringTokenizerTest
         public void SubThaiStringTest5()
         {
             var input = "สบายมาก";
-            var expected = new List<string> {
+            var expected = new List<string>
+            {
                 "สบายมาก"
             };
 
@@ -97,7 +98,8 @@ namespace ThaiStringTokenizerTest
         public void SubThaiStringTest6()
         {
             var input = "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี";
-            var expected = new List<string> {
+            var expected = new List<string>
+            {
                 "ไก่จิกเด็กตายบนปาก",
                 "โอ่ง โอ่งมังกรราชบุรี"
             };
@@ -117,7 +119,8 @@ namespace ThaiStringTokenizerTest
         public void SubThaiStringTest7()
         {
             var input = "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี";
-            var expected = new List<string> {
+            var expected = new List<string>
+            {
                 "ไก่จิกเด็กตายบนปากโอ่ง",
                 " โอ่งมังกรราชบุรี"
             };
