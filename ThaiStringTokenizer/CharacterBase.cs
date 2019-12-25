@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ThaiStringTokenizer.Characters;
 
 namespace ThaiStringTokenizer
 {
-    public abstract class CharacterHandler
+    public abstract class CharacterBase
     {
         public Dictionary<char, List<string>> Dictionary { get; set; } = new Dictionary<char, List<string>>();
 

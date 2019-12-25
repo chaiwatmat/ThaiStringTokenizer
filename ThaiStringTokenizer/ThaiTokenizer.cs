@@ -7,7 +7,7 @@ using ThaiStringTokenizer.Models;
 
 namespace ThaiStringTokenizer
 {
-    public class ThaiTokenizer : CharacterHandler
+    public class ThaiTokenizer : CharacterBase
     {
         public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
         {
