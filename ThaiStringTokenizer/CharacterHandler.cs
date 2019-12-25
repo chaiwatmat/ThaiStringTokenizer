@@ -19,7 +19,7 @@ namespace ThaiStringTokenizer
 
         public bool IsThaiCharacter(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
 
-        public void HandleConsonantOrVowel(List<string> outputList, char[] characters, ref string tmpString, ref int i)
+        public int HandleConsonantOrVowel(List<string> outputList, char[] characters, string tmpString, int i)
         {
             tmpString += characters[i].ToString();
 
@@ -60,10 +60,11 @@ namespace ThaiStringTokenizer
 
                 outputList[lastOutputIndex] += tmpString;
             }
-            tmpString = "";
+
+            return i;
         }
 
-        public void HandleEnglishCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
+        public int HandleEnglishCharacter(List<string> outputList, char[] characters, string tmpString, int i)
         {
             tmpString += characters[i].ToString();
             for (int j = i + 1; j < characters.Length; j++)
@@ -79,10 +80,11 @@ namespace ThaiStringTokenizer
                 }
             }
             outputList.Add(tmpString);
-            tmpString = "";
+
+            return i;
         }
 
-        public void HandleNumberCharacter(List<string> outputList, char[] characters, ref string tmpString, ref int i)
+        public int HandleNumberCharacter(List<string> outputList, char[] characters, string tmpString, int i)
         {
             tmpString += characters[i].ToString();
             for (int j = i + 1; j < characters.Length; j++)
@@ -98,7 +100,8 @@ namespace ThaiStringTokenizer
                 }
             }
             outputList.Add(tmpString);
-            tmpString = "";
+
+            return i;
         }
     }
 }

@@ -59,15 +59,15 @@ namespace ThaiStringTokenizer
 
                     if (IsEnglishCharacter(character))
                     {
-                        HandleEnglishCharacter(outputList, characters, ref tmpString, ref i);
+                        i = HandleEnglishCharacter(outputList, characters, tmpString, i);
                     }
                     else if (IsNumberCharacter(character))
                     {
-                        HandleNumberCharacter(outputList, characters, ref tmpString, ref i);
+                        i = HandleNumberCharacter(outputList, characters, tmpString, i);
                     }
                     else if (IsThaiCharacter(character))
                     {
-                        HandleConsonantOrVowel(outputList, characters, ref tmpString, ref i);
+                        i = HandleConsonantOrVowel(outputList, characters, tmpString, i);
                     }
                     else
                     {
