@@ -51,7 +51,6 @@ namespace ThaiStringTokenizer
             foreach (string word in words)
             {
                 var characters = word.ToCharArray();
-                var tmpString = "";
 
                 for (int i = 0; i < characters.Length; i++)
                 {
@@ -59,15 +58,15 @@ namespace ThaiStringTokenizer
 
                     if (IsEnglishCharacter(character))
                     {
-                        i = HandleEnglishCharacter(outputList, characters, tmpString, i);
+                        i = HandleEnglishCharacter(outputList, characters, i);
                     }
                     else if (IsNumberCharacter(character))
                     {
-                        i = HandleNumberCharacter(outputList, characters, tmpString, i);
+                        i = HandleNumberCharacter(outputList, characters, i);
                     }
                     else if (IsThaiCharacter(character))
                     {
-                        i = HandleConsonantOrVowel(outputList, characters, tmpString, i);
+                        i = HandleConsonantOrVowel(outputList, characters, i);
                     }
                     else
                     {
