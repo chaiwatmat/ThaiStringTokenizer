@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ThaiStringTokenizer.Characters;
 using ThaiStringTokenizer.Models;
 
 namespace ThaiStringTokenizer
 {
-    public class ThaiTokenizer
+    public class ThaiTokenizer : CharacterHandler
     {
         private Dictionary<char, List<string>> _dictionary = new Dictionary<char, List<string>>();
         private bool _removeSpace;
@@ -228,9 +227,5 @@ namespace ThaiStringTokenizer
             }
             tmpString = "";
         }
-
-        private bool IsThaiCharacter(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
-        private bool IsEnglishCharacter(char charNumber) => BasicLatinCharacter.Alphabets.Contains(charNumber);
-        private bool IsNumberCharacter(char charNumber) => BasicLatinCharacter.Digits.Contains(charNumber);
     }
 }
