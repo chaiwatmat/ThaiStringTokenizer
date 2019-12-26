@@ -72,24 +72,24 @@ namespace ThaiStringTokenizer
             foreach (string word in words)
             {
                 var characters = word.ToCharArray();
+                var charactersLength = characters.Length;
 
-                for (int i = 0; i < characters.Length; i++)
+                for (int i = 0; i < charactersLength; i++)
                 {
                     var character = characters[i];
 
                     foreach (var handler in handlers)
                     {
-                        if (handler.IsMatch(character))
-                        {
-                            handler.Dictionary = Dictionary;
-                            handler.RemoveSpace = RemoveSpace;
-                            handler.ShortWordFirst = ShortWordFirst;
-                            handler.Words = Words;
+                        if (!handler.IsMatch(character)) { continue; }
 
-                            i = handler.HandleCharacter(outputList, characters, i);
+                        handler.Dictionary = Dictionary;
+                        handler.RemoveSpace = RemoveSpace;
+                        handler.ShortWordFirst = ShortWordFirst;
+                        handler.Words = Words;
 
-                            break;
-                        }
+                        i = handler.HandleCharacter(outputList, characters, i);
+
+                        break;
                     }
                 }
             }
