@@ -43,10 +43,22 @@ namespace ThaiStringTokenizer
             }
         }
 
+        private List<ICharacterHandler> GetCharacterHandlers()
+        {
+            return new List<ICharacterHandler>
+            {
+                new EnglishCharacterHandler(),
+                new NumberCharacterHandler(),
+                new ThaiCharacterHandler(),
+                new UnknownCharacterHandler()
+            };
+        }
+
         public List<string> Split(string input)
         {
             var outputList = new List<string>();
             var words = RemoveSpace ? input.Split(' ') : new string[] { input };
+            var handlers = GetCharacterHandlers();
 
             foreach (string word in words)
             {
@@ -56,21 +68,19 @@ namespace ThaiStringTokenizer
                 {
                     var character = characters[i];
 
-                    if (IsEnglishCharacter(character))
+                    foreach (var handler in handlers)
                     {
-                        i = HandleEnglishCharacter(outputList, characters, i);
-                    }
-                    else if (IsNumberCharacter(character))
-                    {
-                        i = HandleNumberCharacter(outputList, characters, i);
-                    }
-                    else if (IsThaiCharacter(character))
-                    {
-                        i = HandleConsonantOrVowel(outputList, characters, i);
-                    }
-                    else
-                    {
-                        outputList.Add(character.ToString());
+                        if (handler.IsMatch(character))
+                        {
+                            handler.Dictionary = Dictionary;
+                            handler.RemoveSpace = RemoveSpace;
+                            handler.ShortWordFirst = ShortWordFirst;
+                            handler.Words = Words;
+
+                            i = handler.HandleCharacter(outputList, characters, i);
+
+                            break;
+                        }
                     }
                 }
             }
