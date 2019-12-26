@@ -5,7 +5,7 @@ namespace ThaiStringTokenizer
 {
     public class ThaiCharacterHandler : CharacterHandlerBase, ICharacterHandler
     {
-        public int HandleCharacter(List<string> outputList, char[] characters, int index)
+        public override int HandleCharacter(List<string> outputList, char[] characters, int index)
         {
             var tmpString = characters[index].ToString();
 
@@ -50,6 +50,6 @@ namespace ThaiStringTokenizer
             return index;
         }
 
-        public bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
+        public override bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
     }
 }
