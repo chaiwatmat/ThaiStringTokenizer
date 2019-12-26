@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using ThaiStringTokenizer.Characters;
 
-namespace ThaiStringTokenizer
+namespace ThaiStringTokenizer.Handlers
 {
     public class NumberCharacterHandler : CharacterHandlerBase, ICharacterHandler
     {

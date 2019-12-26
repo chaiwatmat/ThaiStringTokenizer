@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ThaiStringTokenizer
+namespace ThaiStringTokenizer.Handlers
 {
     public class UnknownCharacterHandler : CharacterHandlerBase, ICharacterHandler
     {
