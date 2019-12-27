@@ -10,7 +10,7 @@ namespace ThaiStringTokenizer.Handlers
 
         public virtual bool ShortWordFirst { get; set; }
 
-        public virtual string[] Words { get; set; }
+        public virtual List<string> Words { get; set; }
 
         public virtual int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
@@ -32,6 +32,6 @@ namespace ThaiStringTokenizer.Handlers
             return index;
         }
 
-        public virtual bool IsMatch(char charNumber) => false;
+        public virtual bool IsMatch(char charNumber) => true;
     }
 }

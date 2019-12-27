@@ -43,17 +43,8 @@ namespace ThaiStringTokenizer.Handlers
             else
             {
                 var lastOutputIndex = resultWords.Count - 1;
-                var lastWord = resultWords[lastOutputIndex];
 
-                var firstCharacter = tmpString[0];
-                if (Dictionary.ContainsKey(firstCharacter) && Dictionary[firstCharacter].Contains(lastWord))
-                {
-                    resultWords.Add(tmpString);
-                }
-                else
-                {
-                    resultWords[lastOutputIndex] += tmpString;
-                }
+                resultWords[lastOutputIndex] += tmpString;
             }
 
             return index;

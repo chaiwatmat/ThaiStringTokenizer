@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using ThaiStringTokenizer.Handlers;
 
 namespace ThaiStringTokenizer
@@ -11,7 +15,7 @@ namespace ThaiStringTokenizer
 
         public bool ShortWordFirst { get; set; }
 
-        public string[] Words { get; set; }
+        public List<string> Words { get; set; }
         public List<ICharacterHandler> GetCharacterHandlers()
         {
             return new List<ICharacterHandler>
@@ -21,6 +25,35 @@ namespace ThaiStringTokenizer
                 new ThaiCharacterHandler(),
                 new UnknownCharacterHandler()
             };
+        }
+
+        public void GenerateWords(List<string> customWords)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = assembly.GetManifestResourceNames()
+                .Single(str => str.EndsWith("ThaiStringTokenizer.dictionary.txt"));
+            var stream = assembly.GetManifestResourceStream(resourceName);
+            var textStreamReader = new StreamReader(stream);
+            var textWords = textStreamReader.ReadToEnd();
+
+            Words = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
+
+            if (customWords != null) { Words.InsertRange(0, customWords); }
+        }
+
+        public void GenerateDictionary()
+        {
+            foreach (var word in Words)
+            {
+                var firstCharacter = word[0];
+
+                if (!Dictionary.ContainsKey(firstCharacter))
+                {
+                    Dictionary.Add(word[0], new List<string>());
+                }
+
+                Dictionary[firstCharacter].Add(word);
+            }
         }
     }
 }
