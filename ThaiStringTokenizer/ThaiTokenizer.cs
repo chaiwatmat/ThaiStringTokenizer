@@ -9,7 +9,6 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : TokenizerBase
     {
-
         public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
         {
             RemoveSpace = removeSpace;
