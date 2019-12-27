@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ThaiStringTokenizer.Handlers;
 using ThaiStringTokenizer.Models;
 
 namespace ThaiStringTokenizer
 {
-    public class ThaiTokenizer
+    public class ThaiTokenizer : TokenizerBase
     {
-        public Dictionary<char, List<string>> Dictionary { get; set; } = new Dictionary<char, List<string>>();
-
-        public bool RemoveSpace { get; set; }
-
-        public bool ShortWordFirst { get; set; }
-
-        public string[] Words { get; set; }
 
         public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
         {
@@ -50,17 +42,6 @@ namespace ThaiStringTokenizer
                 }
                 Dictionary[word[0]].Add(word);
             }
-        }
-
-        private List<ICharacterHandler> GetCharacterHandlers()
-        {
-            return new List<ICharacterHandler>
-            {
-                new EnglishCharacterHandler(),
-                new NumberCharacterHandler(),
-                new ThaiCharacterHandler(),
-                new UnknownCharacterHandler()
-            };
         }
 
         public List<string> Split(string input)
