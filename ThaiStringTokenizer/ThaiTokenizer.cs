@@ -26,12 +26,12 @@ namespace ThaiStringTokenizer
 
             foreach (string inputWord in inputWords)
             {
-                var characters = inputWord.ToCharArray();
-                var charactersLength = characters.Length;
+                var inpuWordChars = inputWord.ToCharArray();
+                var inputWordCharsLength = inpuWordChars.Length;
 
-                for (int i = 0; i < charactersLength; i++)
+                for (int i = 0; i < inputWordCharsLength; i++)
                 {
-                    var character = characters[i];
+                    var character = inpuWordChars[i];
 
                     foreach (var handler in handlers)
                     {
@@ -42,7 +42,7 @@ namespace ThaiStringTokenizer
                         handler.ShortWordFirst = ShortWordFirst;
                         handler.Words = Words;
 
-                        i = handler.HandleCharacter(resultWords, characters, i);
+                        i = handler.HandleCharacter(resultWords, inpuWordChars, i);
 
                         break;
                     }

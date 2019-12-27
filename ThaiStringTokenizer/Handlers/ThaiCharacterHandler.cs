@@ -7,27 +7,25 @@ namespace ThaiStringTokenizer.Handlers
     {
         public override int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
-            var tmpString = characters[index].ToString();
-
-            bool isFound = false;
-            string moretmp = tmpString;
+            var resultWord = characters[index].ToString();
+            var moreCharacters = resultWord;
+            var isWordFound = false;
 
             for (int j = index + 1; j < characters.Length; j++)
             {
-                moretmp += characters[j].ToString();
-                var firstCharacter = moretmp[0];
+                moreCharacters += characters[j].ToString();
+                var firstCharacter = moreCharacters[0];
 
                 if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
                 foreach (var word in Dictionary[firstCharacter])
                 {
-                    if (word == moretmp)
-                    {
-                        tmpString = moretmp;
-                        index = j;
-                        isFound = true;
-                        break;
-                    }
+                    if (word != moreCharacters) { continue; }
+
+                    resultWord = moreCharacters;
+                    index = j;
+                    isWordFound = true;
+                    break;
                 }
 
                 if (ShortWordFirst)
@@ -36,18 +34,23 @@ namespace ThaiStringTokenizer.Handlers
                 }
             }
 
-            if (isFound)
+            HandleResultWords(resultWords, resultWord, isWordFound);
+
+            return index;
+        }
+
+        private void HandleResultWords(List<string> resultWords, string resultWord, bool isWordFound)
+        {
+            if (isWordFound)
             {
-                resultWords.Add(tmpString);
+                resultWords.Add(resultWord);
             }
             else
             {
                 var lastOutputIndex = resultWords.Count - 1;
 
-                resultWords[lastOutputIndex] += tmpString;
+                resultWords[lastOutputIndex] += resultWord;
             }
-
-            return index;
         }
 
         public override bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
