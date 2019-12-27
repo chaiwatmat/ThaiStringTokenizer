@@ -5,9 +5,9 @@ namespace ThaiStringTokenizer.Handlers
     public class UnknownCharacterHandler : CharacterHandlerBase, ICharacterHandler
     {
         private char _character;
-        public override int HandleCharacter(List<string> outputList, char[] characters, int index)
+        public override int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
-            outputList.Add(_character.ToString());
+            resultWords.Add(_character.ToString());
 
             return index;
         }

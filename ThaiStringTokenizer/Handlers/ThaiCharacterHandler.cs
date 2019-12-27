@@ -5,7 +5,7 @@ namespace ThaiStringTokenizer.Handlers
 {
     public class ThaiCharacterHandler : CharacterHandlerBase, ICharacterHandler
     {
-        public override int HandleCharacter(List<string> outputList, char[] characters, int index)
+        public override int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
             var tmpString = characters[index].ToString();
 
@@ -38,13 +38,22 @@ namespace ThaiStringTokenizer.Handlers
 
             if (isFound)
             {
-                outputList.Add(tmpString);
+                resultWords.Add(tmpString);
             }
             else
             {
-                var lastOutputIndex = outputList.Count - 1;
+                var lastOutputIndex = resultWords.Count - 1;
+                var lastWord = resultWords[lastOutputIndex];
 
-                outputList[lastOutputIndex] += tmpString;
+                var firstCharacter = tmpString[0];
+                if (Dictionary.ContainsKey(firstCharacter) && Dictionary[firstCharacter].Contains(lastWord))
+                {
+                    resultWords.Add(tmpString);
+                }
+                else
+                {
+                    resultWords[lastOutputIndex] += tmpString;
+                }
             }
 
             return index;

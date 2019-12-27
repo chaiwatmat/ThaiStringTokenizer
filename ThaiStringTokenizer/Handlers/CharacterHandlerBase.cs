@@ -12,7 +12,7 @@ namespace ThaiStringTokenizer.Handlers
 
         public virtual string[] Words { get; set; }
 
-        public virtual int HandleCharacter(List<string> outputList, char[] characters, int index)
+        public virtual int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
             var tmpString = characters[index].ToString();
             for (int j = index + 1; j < characters.Length; j++)
@@ -27,7 +27,7 @@ namespace ThaiStringTokenizer.Handlers
                     break;
                 }
             }
-            outputList.Add(tmpString);
+            resultWords.Add(tmpString);
 
             return index;
         }

@@ -65,13 +65,13 @@ namespace ThaiStringTokenizer
 
         public List<string> Split(string input)
         {
-            var outputList = new List<string>();
-            var words = RemoveSpace ? input.Split(' ') : new string[] { input };
+            var resultWords = new List<string>();
+            var inputWords = RemoveSpace ? input.Split(' ') : new string[] { input };
             var handlers = GetCharacterHandlers();
 
-            foreach (string word in words)
+            foreach (string inputWord in inputWords)
             {
-                var characters = word.ToCharArray();
+                var characters = inputWord.ToCharArray();
                 var charactersLength = characters.Length;
 
                 for (int i = 0; i < charactersLength; i++)
@@ -87,14 +87,14 @@ namespace ThaiStringTokenizer
                         handler.ShortWordFirst = ShortWordFirst;
                         handler.Words = Words;
 
-                        i = handler.HandleCharacter(outputList, characters, i);
+                        i = handler.HandleCharacter(resultWords, characters, i);
 
                         break;
                     }
                 }
             }
 
-            return outputList;
+            return resultWords;
         }
 
         public List<string> SubThaiString(string input, int length)
