@@ -26,6 +26,14 @@ namespace ThaiStringTokenizerTest
         }
 
         [Fact]
+        public void SampleTest0()
+        {
+            var input = "กุญจ์สิริลัญฉกร";
+            var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร" };
+            Verify(input, expected);
+        }
+
+        [Fact]
         public void SampleTest1()
         {
             var input = "โชติกานต์ ศรีสุวรรณ์";
