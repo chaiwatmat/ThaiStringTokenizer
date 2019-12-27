@@ -9,7 +9,7 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : TokenizerBase
     {
-        public ThaiTokenizer(List<string> words = null, bool removeSpace = true, bool shortWordFirst = false)
+        public ThaiTokenizer(List<string> customWords = null, bool removeSpace = true, bool shortWordFirst = false)
         {
             RemoveSpace = removeSpace;
             ShortWordFirst = shortWordFirst;
@@ -24,9 +24,10 @@ namespace ThaiStringTokenizer
             var originalWords = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
             var listWords = new List<string>();
 
-            if (words != null)
+            if (customWords != null)
             {
-                listWords.AddRange(words);
+                listWords.InsertRange(0, customWords);
+                listWords.AddRange(customWords);
             }
 
             listWords.AddRange(originalWords);
@@ -35,11 +36,14 @@ namespace ThaiStringTokenizer
 
             foreach (var word in Words)
             {
-                if (!Dictionary.ContainsKey(word[0]))
+                var firstCharacter = word[0];
+
+                if (!Dictionary.ContainsKey(firstCharacter))
                 {
                     Dictionary.Add(word[0], new List<string>());
                 }
-                Dictionary[word[0]].Add(word);
+
+                Dictionary[firstCharacter].Add(word);
             }
         }
 
