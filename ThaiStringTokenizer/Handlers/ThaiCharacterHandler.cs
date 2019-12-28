@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ThaiStringTokenizer.Characters;
 
 namespace ThaiStringTokenizer.Handlers
@@ -18,7 +19,9 @@ namespace ThaiStringTokenizer.Handlers
 
                 if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
-                foreach (var word in Dictionary[firstCharacter])
+                var dicWords = Dictionary[firstCharacter];
+
+                foreach (var word in dicWords)
                 {
                     if (word != moreCharacters) { continue; }
 
@@ -28,10 +31,7 @@ namespace ThaiStringTokenizer.Handlers
                     break;
                 }
 
-                if (ShortWordFirst)
-                {
-                    break;
-                }
+                if (ShortWordFirst) { break; }
             }
 
             HandleResultWords(resultWords, resultWord, isWordFound);
@@ -47,9 +47,9 @@ namespace ThaiStringTokenizer.Handlers
             }
             else
             {
-                var lastOutputIndex = resultWords.Count - 1;
+                var lastResultIndex = resultWords.Count - 1;
 
-                resultWords[lastOutputIndex] += resultWord;
+                resultWords[lastResultIndex] += resultWord;
             }
         }
 
