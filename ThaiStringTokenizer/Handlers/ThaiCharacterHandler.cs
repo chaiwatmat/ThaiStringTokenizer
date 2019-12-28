@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ThaiStringTokenizer.Characters;
@@ -11,14 +12,13 @@ namespace ThaiStringTokenizer.Handlers
             var resultWord = characters[index].ToString();
             var moreCharacters = resultWord;
             var isWordFound = false;
+            var firstCharacter = moreCharacters[0];
 
             for (int j = index + 1; j < characters.Length; j++)
             {
-                moreCharacters += characters[j].ToString();
-                var firstCharacter = moreCharacters[0];
-
                 if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
+                moreCharacters += characters[j].ToString();
                 var dicWords = Dictionary[firstCharacter];
 
                 foreach (var word in dicWords)

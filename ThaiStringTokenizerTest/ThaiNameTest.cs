@@ -14,15 +14,16 @@ namespace ThaiStringTokenizerTest
             var tokenizer = new ThaiTokenizer(removeSpace: false, shortWordFirst: shortWordFirst);
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Console.WriteLine(x);
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-
             Console.WriteLine("==============");
+            Console.WriteLine("input = {0}", input);
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                Console.WriteLine(results[i]);
+                Assert.Equal(expected[i], results[i]);
+            }
+
+            // Console.WriteLine("==============");
         }
 
         [Fact]
