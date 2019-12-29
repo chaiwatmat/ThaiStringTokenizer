@@ -27,7 +27,7 @@ namespace ThaiStringTokenizer
             };
         }
 
-        public void GenerateWords(List<string> customWords)
+        public void InitialWords(List<string> customWords)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
@@ -41,7 +41,7 @@ namespace ThaiStringTokenizer
             if (customWords != null) { Words.InsertRange(0, customWords); }
         }
 
-        public void GenerateDictionary()
+        public void InitialDictionary()
         {
             foreach (var word in Words)
             {

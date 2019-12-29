@@ -14,8 +14,8 @@ namespace ThaiStringTokenizer
             RemoveSpace = removeSpace;
             ShortWordFirst = shortWordFirst;
 
-            GenerateWords(customWords);
-            GenerateDictionary();
+            InitialWords(customWords);
+            InitialDictionary();
         }
 
         public List<string> Split(string input)
