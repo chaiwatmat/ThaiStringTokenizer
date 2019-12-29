@@ -11,8 +11,8 @@ namespace ThaiStringTokenizer.Handlers
         {
             var resultWord = characters[index].ToString();
             var moreCharacters = resultWord;
-            var isWordFound = false;
             var firstCharacter = moreCharacters[0];
+            var isWordFound = false;
 
             for (int j = index + 1; j < characters.Length; j++)
             {
