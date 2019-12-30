@@ -10,6 +10,12 @@ namespace ThaiStringTokenizerTest
         public virtual void Verify(string input, List<string> expected, bool shortWordFirst = false)
         {
             var tokenizer = new ThaiTokenizer(removeSpace: false, shortWordFirst: shortWordFirst);
+
+            Verify(tokenizer, input, expected);
+        }
+
+        public virtual void Verify(ThaiTokenizer tokenizer, string input, List<string> expected)
+        {
             var results = tokenizer.Split(input);
 
             Console.WriteLine("==============");
