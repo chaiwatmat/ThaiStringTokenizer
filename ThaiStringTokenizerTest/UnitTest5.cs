@@ -17,7 +17,7 @@ namespace ThaiStringTokenizerTest
                 "Hello สวัสดี ไทยคำ อังกฤษคำ"
             };
 
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
+            var tokenizer = new ThaiTokenizer(noSpace: false);
 
             var results = tokenizer.SubThaiString(input, input.Length);
 
@@ -38,7 +38,7 @@ namespace ThaiStringTokenizerTest
                 "Hello สวัสดี ไทยคำ อังกฤษคำ 1234"
             };
 
-            var tokenizer = new ThaiTokenizer(removeSpace: false);
+            var tokenizer = new ThaiTokenizer(noSpace: false);
 
             var results = tokenizer.SubThaiString(input, input.Length);
 

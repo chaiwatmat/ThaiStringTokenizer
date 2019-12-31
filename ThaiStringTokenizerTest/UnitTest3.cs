@@ -38,7 +38,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void TestSplit_SupportSpace()
         {
-            ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+            ThaiTokenizer tokenizer = new ThaiTokenizer(noSpace: false);
             string text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
             var result = tokenizer.SubThaiString(text, 50);
 
@@ -91,7 +91,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void TestSplitKeepSpace_ThaiWithEnglish()
         {
-            ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+            ThaiTokenizer tokenizer = new ThaiTokenizer(noSpace: false);
             string text = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
             var result = tokenizer.Split(text);
 
@@ -128,7 +128,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void TestSubThaiString_ThaiWithEnglish()
         {
-            ThaiTokenizer tokenizer = new ThaiTokenizer(removeSpace: false);
+            ThaiTokenizer tokenizer = new ThaiTokenizer(noSpace: false);
             string text = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
             var result = tokenizer.SubThaiString(text, 50);
 

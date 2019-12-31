@@ -6,12 +6,12 @@ namespace ThaiStringTokenizer.Handlers
     {
         Dictionary<char, List<string>> Dictionary { get; set; }
 
-        bool RemoveSpace { get; set; }
+        bool NoSpace { get; set; }
 
         bool ShortWordFirst { get; set; }
 
-        List<string> Words { get; set; }
         bool IsMatch(char character);
+        
         int HandleCharacter(List<string> resultWords, char[] characters, int index);
     }
 }

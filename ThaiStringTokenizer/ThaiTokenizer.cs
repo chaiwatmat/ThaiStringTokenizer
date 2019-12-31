@@ -9,13 +9,12 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : TokenizerBase
     {
-        public ThaiTokenizer(List<string> customWords = null, bool removeSpace = true, bool shortWordFirst = false)
+        public ThaiTokenizer(List<string> customWords = null, bool noSpace = true, bool shortWordFirst = false)
         {
-            NoSpace = removeSpace;
+            NoSpace = noSpace;
             ShortWordFirst = shortWordFirst;
 
-            InitialWords(customWords);
-            InitialDictionary();
+            InitialDictionary(customWords);
         }
 
         public List<string> Split(string input)
@@ -38,9 +37,8 @@ namespace ThaiStringTokenizer
                         if (!handler.IsMatch(character)) { continue; }
 
                         handler.Dictionary = Dictionary;
-                        handler.RemoveSpace = NoSpace;
+                        handler.NoSpace = NoSpace;
                         handler.ShortWordFirst = ShortWordFirst;
-                        handler.Words = Words;
 
                         i = handler.HandleCharacter(resultWords, inpuWordChars, i);
 

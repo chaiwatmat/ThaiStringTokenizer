@@ -15,7 +15,6 @@ namespace ThaiStringTokenizer
 
         public bool ShortWordFirst { get; set; }
 
-        public List<string> Words { get; set; }
         public List<ICharacterHandler> GetCharacterHandlers()
         {
             return new List<ICharacterHandler>
@@ -27,7 +26,7 @@ namespace ThaiStringTokenizer
             };
         }
 
-        public void InitialWords(List<string> customWords)
+        private List<string> InitialWords(List<string> customWords = null)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = assembly.GetManifestResourceNames()
@@ -36,20 +35,24 @@ namespace ThaiStringTokenizer
             var textStreamReader = new StreamReader(stream);
             var textWords = textStreamReader.ReadToEnd();
 
-            Words = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
+            var words = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
 
-            if (customWords != null) { Words.InsertRange(0, customWords); }
+            if (customWords != null && customWords.Any()) { words.InsertRange(0, customWords); }
+
+            return words;
         }
 
-        public void InitialDictionary()
+        public void InitialDictionary(List<string> customWords = null)
         {
-            foreach (var word in Words)
+            var words = InitialWords(customWords);
+
+            foreach (var word in words)
             {
                 var firstCharacter = word[0];
 
                 if (!Dictionary.ContainsKey(firstCharacter))
                 {
-                    Dictionary.Add(word[0], new List<string>());
+                    Dictionary.Add(firstCharacter, new List<string>());
                 }
 
                 Dictionary[firstCharacter].Add(word);
