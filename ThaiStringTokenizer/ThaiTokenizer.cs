@@ -11,7 +11,7 @@ namespace ThaiStringTokenizer
     {
         public ThaiTokenizer(List<string> customWords = null, bool removeSpace = true, bool shortWordFirst = false)
         {
-            RemoveSpace = removeSpace;
+            NoSpace = removeSpace;
             ShortWordFirst = shortWordFirst;
 
             InitialWords(customWords);
@@ -21,7 +21,7 @@ namespace ThaiStringTokenizer
         public List<string> Split(string input)
         {
             var resultWords = new List<string>();
-            var inputWords = RemoveSpace ? input.Split(' ') : new string[] { input };
+            var inputWords = NoSpace ? input.Split(' ') : new string[] { input };
             var handlers = GetCharacterHandlers();
 
             foreach (string inputWord in inputWords)
@@ -38,7 +38,7 @@ namespace ThaiStringTokenizer
                         if (!handler.IsMatch(character)) { continue; }
 
                         handler.Dictionary = Dictionary;
-                        handler.RemoveSpace = RemoveSpace;
+                        handler.RemoveSpace = NoSpace;
                         handler.ShortWordFirst = ShortWordFirst;
                         handler.Words = Words;
 
