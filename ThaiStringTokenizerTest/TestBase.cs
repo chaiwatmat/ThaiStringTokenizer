@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ThaiStringTokenizer;
 using Xunit;
 
@@ -20,14 +21,12 @@ namespace ThaiStringTokenizerTest
 
             Console.WriteLine("==============");
             Console.WriteLine("input = {0}", input);
+            Console.WriteLine("result = [{0}]", string.Join(',', results));
 
             for (int i = 0; i < results.Count; i++)
             {
-                Console.WriteLine(results[i]);
                 Assert.Equal(expected[i], results[i]);
             }
-
-            Console.WriteLine("==============");
         }
     }
 }

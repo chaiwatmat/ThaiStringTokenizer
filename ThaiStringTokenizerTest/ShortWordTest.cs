@@ -6,9 +6,9 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class ShortWordTest
+    public class ShortWordTest : TestBase
     {
-        // [Fact]
+        [Fact]
         public void ShortWordTest1()
         {
             var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
@@ -23,25 +23,22 @@ namespace ThaiStringTokenizerTest
                 "ธนา",
                 "นัง",
                 " ",
-                "ธัมมัง",
+                "ธัม",
+                "มัง",
                 "อา",
                 "รา",
                 "ธนา",
                 "นัง",
                 " ",
-                "สังฆัง",
+                "สัง",
+                "ฆัง",
                 "อา",
                 "รา",
                 "ธนา",
                 "นัง",
             };
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected);
         }
 
         [Fact]
@@ -57,12 +54,7 @@ namespace ThaiStringTokenizerTest
                 "กลม"
             };
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected);
         }
 
         [Fact]
@@ -74,15 +66,10 @@ namespace ThaiStringTokenizerTest
 
             var expected = new List<string>
             {
-                "กวาง",
+                "กวาง"
             };
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected);
         }
     }
 }

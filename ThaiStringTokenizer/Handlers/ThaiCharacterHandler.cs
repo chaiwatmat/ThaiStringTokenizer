@@ -14,6 +14,14 @@ namespace ThaiStringTokenizer.Handlers
             var firstCharacter = moreCharacters[0];
             var isWordFound = false;
 
+            var previousWordHandled = HandlePreviousWord(resultWords);
+            if (previousWordHandled)
+            {
+                HandleResultWords(resultWords, resultWord, isWordFound);
+
+                return index;
+            }
+
             for (int j = index + 1; j < characters.Length; j++)
             {
                 var character = characters[j];
@@ -38,6 +46,21 @@ namespace ThaiStringTokenizer.Handlers
             return index;
         }
 
+        private bool HandlePreviousWord(List<string> resultWords)
+        {
+            var handled = false;
+            var lastResultIndex = resultWords.Count - 1;
+            if (lastResultIndex < 0) { return handled; }
+
+            var previousWord = resultWords[lastResultIndex];
+            var wordLength = previousWord.Length;
+            var lastCharacter = Convert.ToChar(previousWord[wordLength - 1]);
+
+            handled = IsRequiredSpelling(lastCharacter);
+
+            return handled;
+        }
+
         private void HandleResultWords(List<string> resultWords, string resultWord, bool isWordFound)
         {
             if (isWordFound)
@@ -47,14 +70,20 @@ namespace ThaiStringTokenizer.Handlers
             else
             {
                 var lastResultIndex = resultWords.Count - 1;
+                var previousWord = resultWords[lastResultIndex];
 
-                resultWords[lastResultIndex] += resultWord;
+                if (string.IsNullOrWhiteSpace(previousWord))
+                {
+                    resultWords.Add(resultWord);
+                }
+                else
+                {
+                    resultWords[lastResultIndex] += resultWord;
+                }
             }
         }
 
-        private bool IsPrependVowel(char charNumber) => ThaiUnicodeCharacter.PrependVowels.Contains(charNumber);
-
-        private bool IsPostpendVowel(char charNumber) => ThaiUnicodeCharacter.PostpendVowels.Contains(charNumber);
+        private bool IsRequiredSpelling(char charNumber) => ThaiUnicodeCharacter.PostpendVowelsRequiredSpelling.Contains(charNumber);
 
         public override bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
     }

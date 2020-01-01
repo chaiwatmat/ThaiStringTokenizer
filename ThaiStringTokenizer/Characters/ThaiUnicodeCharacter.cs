@@ -111,26 +111,41 @@ namespace ThaiStringTokenizer.Characters
             }
         }
 
-        public static List<int> PostpendVowels = new List<int>
+        public static List<int> PostpendVowels
+        {
+            get
+            {
+                var vowels = new List<int>();
+                vowels.AddRange(PostpendVowelsUnrequiredSpelling);
+                vowels.AddRange(PostpendVowelsRequiredSpelling);
+
+                return vowels;
+            }
+        }
+
+        public static List<int> PostpendVowelsUnrequiredSpelling => new List<int>
         {
             0x0e30, //  ะ
-            0x0e31, //  ั
             0x0e32, //  า
             0x0e33, //  ำ
             0x0e34, //  ิ
             0x0e35, //  ี
             0x0e36, //  ึ
-            0x0e37, //  ื
             0x0e38, //  ุ
             0x0e39, //  ู
             0x0e3a, //  ฺ   =>  ธมฺมํ
-
             0x0e4c, //  ์
             0x0e4d, //  ํ   =>  ธมฺมํ
             0x0e47 //   ็
         };
 
-        public static List<int> PrependVowels = new List<int>
+        public static List<int> PostpendVowelsRequiredSpelling => new List<int>
+        {
+            0x0e31, //  ั
+            0x0e37, //  ื
+        };
+
+        public static List<int> PrependVowels => new List<int>
         {
             0x0e40, //  เ
             0x0e41, //  แ
@@ -142,15 +157,15 @@ namespace ThaiStringTokenizer.Characters
         public static List<int> CurrencySymbol => new List<int> { 0x0e3f }; //฿
         public static List<int> VowelLengthSign => new List<int> { 0x0e45 }; //ฤา (สระ า หางยาว)
         public static List<int> RepetitionMark => new List<int> { 0x0e46 }; //ๆ
-        // ่ ้ ๊ ๋
+
         public static List<int> ToneMarks => new List<int>
         {
-            0x0e48,
-            0x0e49,
-            0x0e4a,
-            0x0e4b
+            0x0e48, //  ่
+            0x0e49, //  ้
+            0x0e4a, //  ๊
+            0x0e4b  //  ๋
         };
-        // ์ ํ 
+
         public static List<int> Signs => new List<int>
         {
             0x0e4e, //      => not use
