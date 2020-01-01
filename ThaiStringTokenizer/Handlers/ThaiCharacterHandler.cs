@@ -16,9 +16,10 @@ namespace ThaiStringTokenizer.Handlers
 
             for (int j = index + 1; j < characters.Length; j++)
             {
+                var character = characters[j];
                 if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
-                moreCharacters += characters[j].ToString();
+                moreCharacters += character.ToString();
                 var dicWords = Dictionary[firstCharacter];
 
                 foreach (var word in dicWords)
@@ -52,6 +53,10 @@ namespace ThaiStringTokenizer.Handlers
                 resultWords[lastResultIndex] += resultWord;
             }
         }
+
+        private bool IsPrependVowel(char charNumber) => ThaiUnicodeCharacter.PrependVowels.Contains(charNumber);
+
+        private bool IsPostpendVowel(char charNumber) => ThaiUnicodeCharacter.PostpendVowels.Contains(charNumber);
 
         public override bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
     }

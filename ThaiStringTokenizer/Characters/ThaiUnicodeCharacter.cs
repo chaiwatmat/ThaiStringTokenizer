@@ -99,27 +99,44 @@ namespace ThaiStringTokenizer.Characters
             0x0e2e
         };
 
-        public static List<int> Vowels => new List<int>
+        public static List<int> Vowels
         {
-            0x0e30,
-            0x0e31,
-            0x0e32,
-            0x0e33,
-            0x0e34,
-            0x0e35,
-            0x0e36,
-            0x0e37,
-            0x0e38,
-            0x0e39,
-            0x0e3a,
+            get
+            {
+                var vowels = new List<int>();
+                vowels.AddRange(PrependVowels);
+                vowels.AddRange(PostpendVowels);
 
-            0x0e40,
-            0x0e41,
-            0x0e42,
-            0x0e43,
-            0x0e44,
+                return vowels;
+            }
+        }
 
-            0x0e47
+        public static List<int> PostpendVowels = new List<int>
+        {
+            0x0e30, //  ะ
+            0x0e31, //  ั
+            0x0e32, //  า
+            0x0e33, //  ำ
+            0x0e34, //  ิ
+            0x0e35, //  ี
+            0x0e36, //  ึ
+            0x0e37, //  ื
+            0x0e38, //  ุ
+            0x0e39, //  ู
+            0x0e3a, //  ฺ   =>  ธมฺมํ
+
+            0x0e4c, //  ์
+            0x0e4d, //  ํ   =>  ธมฺมํ
+            0x0e47 //   ็
+        };
+
+        public static List<int> PrependVowels = new List<int>
+        {
+            0x0e40, //  เ
+            0x0e41, //  แ
+            0x0e42, //  โ
+            0x0e43, //  ใ
+            0x0e44, //  ไ
         };
         public static List<int> Sign => new List<int> { 0x0e2f }; //ฯ
         public static List<int> CurrencySymbol => new List<int> { 0x0e3f }; //฿
@@ -136,12 +153,10 @@ namespace ThaiStringTokenizer.Characters
         // ์ ํ 
         public static List<int> Signs => new List<int>
         {
-            0x0e4c,
-            0x0e4d,
-            0x0e4e,
-            0x0e4f,
-            0x0e5a,
-            0x0e5b
+            0x0e4e, //      => not use
+            0x0e4f, //      => not use
+            0x0e5a, //      => not use
+            0x0e5b //       => not use
         };
         // ๐๑๒๓๔๕๖๗๘๙
         public static List<int> Digits => new List<int>

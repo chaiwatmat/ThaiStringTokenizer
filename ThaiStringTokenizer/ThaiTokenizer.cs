@@ -26,9 +26,9 @@ namespace ThaiStringTokenizer
             foreach (string inputWord in inputWords)
             {
                 var inpuWordChars = inputWord.ToCharArray();
-                var inputWordCharsLength = inpuWordChars.Length;
+                var charsLength = inpuWordChars.Length;
 
-                for (int i = 0; i < inputWordCharsLength; i++)
+                for (int i = 0; i < charsLength; i++)
                 {
                     var character = inpuWordChars[i];
 
