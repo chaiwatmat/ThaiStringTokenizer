@@ -43,5 +43,46 @@ namespace ThaiStringTokenizerTest
                 index++;
             });
         }
+
+        [Fact]
+        public void ShortWordTest2()
+        {
+            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var input = "ตากลม";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "ตา",
+                "กลม"
+            };
+
+            var index = 0;
+            results.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
+
+        [Fact]
+        public void ShortWordTest3()
+        {
+            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var input = "กวาง";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "กวาง",
+            };
+
+            var index = 0;
+            results.ForEach(x =>
+            {
+                Assert.Equal(expected[index], x);
+                index++;
+            });
+        }
     }
 }

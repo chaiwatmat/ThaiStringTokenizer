@@ -20,19 +20,17 @@ namespace ThaiStringTokenizer.Handlers
                 if (!Dictionary.ContainsKey(firstCharacter)) { continue; }
 
                 moreCharacters += character.ToString();
+
                 var dicWords = Dictionary[firstCharacter];
-
-                foreach (var word in dicWords)
+                var isMatchedWord = dicWords.Any(word => word == moreCharacters);
+                if (isMatchedWord)
                 {
-                    if (word != moreCharacters) { continue; }
-
-                    resultWord = moreCharacters;
-                    index = j;
                     isWordFound = true;
-                    break;
+                    index = j;
+                    resultWord = moreCharacters;
                 }
 
-                if (ShortWordFirst) { break; }
+                if (ShortWordFirst && isWordFound) { break; }
             }
 
             HandleResultWords(resultWords, resultWord, isWordFound);
