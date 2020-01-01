@@ -71,5 +71,37 @@ namespace ThaiStringTokenizerTest
 
             Verify(tokenizer, input, expected);
         }
+
+        [Fact]
+        public void ShortWordTest4()
+        {
+            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var input = "บางครั้ง";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "บาง",
+                "ครั้ง"
+            };
+
+            Verify(tokenizer, input, expected);
+        }
+
+        [Fact]
+        public void ShortWordTest5()
+        {
+            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var input = "ยังอ่ะ";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "ยัง",
+                "อ่ะ"
+            };
+
+            Verify(tokenizer, input, expected);
+        }
     }
 }
