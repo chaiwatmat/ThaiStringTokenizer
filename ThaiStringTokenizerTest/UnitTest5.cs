@@ -6,7 +6,7 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest5
+    public class UnitTest5 : TestBase
     {
         [Fact]
         public void TestSubstring_ThaiWithEnglish()
@@ -18,15 +18,9 @@ namespace ThaiStringTokenizerTest
             };
 
             var tokenizer = new ThaiTokenizer(noSpace: false);
-
             var results = tokenizer.SubThaiString(input, input.Length);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]
@@ -39,15 +33,9 @@ namespace ThaiStringTokenizerTest
             };
 
             var tokenizer = new ThaiTokenizer(noSpace: false);
-
             var results = tokenizer.SubThaiString(input, input.Length);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]
@@ -59,12 +47,7 @@ namespace ThaiStringTokenizerTest
             var tokenizer = new ThaiTokenizer();
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]
@@ -82,12 +65,7 @@ namespace ThaiStringTokenizerTest
             var tokenizer = new ThaiTokenizer();
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]
@@ -101,15 +79,9 @@ namespace ThaiStringTokenizerTest
             };
 
             var tokenizer = new ThaiTokenizer();
-
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]
@@ -123,15 +95,9 @@ namespace ThaiStringTokenizerTest
             };
 
             var tokenizer = new ThaiTokenizer();
-
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
     }
 }

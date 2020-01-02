@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest4
+    public class UnitTest4 : TestBase
     {
         [Fact]
         public void TestToneMarkSubstring()
@@ -23,15 +23,9 @@ namespace ThaiStringTokenizerTest
             };
 
             var tokenizer = new ThaiTokenizer();
-
             var results = tokenizer.Split(input);
 
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
+            Verify(tokenizer, input, expected, results);
         }
 
         [Fact]

@@ -21,7 +21,21 @@ namespace ThaiStringTokenizerTest
 
             Console.WriteLine("==============");
             Console.WriteLine("input = {0}", input);
-            Console.WriteLine("result = [{0}]", string.Join(',', results));
+            Console.WriteLine("expected = [{0}]", string.Join('|', expected));
+            Console.WriteLine("result = [{0}]", string.Join('|', results));
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                Assert.Equal(expected[i], results[i]);
+            }
+        }
+
+        public virtual void Verify(ThaiTokenizer tokenizer, string input, List<string> expected, List<string> results)
+        {
+            Console.WriteLine("==============");
+            Console.WriteLine("input = {0}", input);
+            Console.WriteLine("expected = [{0}]", string.Join('|', expected));
+            Console.WriteLine("result = [{0}]", string.Join('|', results));
 
             for (int i = 0; i < results.Count; i++)
             {
