@@ -15,25 +15,25 @@ Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai langu
 ### Package Manager
 
 ```bat
-Install-Package ThaiStringTokenizer -Version 0.8.0
+Install-Package ThaiStringTokenizer -Version 0.8.1
 ```
 
 ### .NET CLI
 
 ```sh
-dotnet add package ThaiStringTokenizer --version 0.8.0
+dotnet add package ThaiStringTokenizer --version 0.8.1
 ```
 
 ### PackageReference
 
 ```xml
-<PackageReference Include="ThaiStringTokenizer" Version="0.8.0" />
+<PackageReference Include="ThaiStringTokenizer" Version="0.8.1" />
 ```
 
 ### Paket CLI
 
 ```sh
-paket add ThaiStringTokenizer --version 0.8.0
+paket add ThaiStringTokenizer --version 0.8.1
 ```
 
 ## Usage
