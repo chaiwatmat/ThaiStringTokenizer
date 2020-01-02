@@ -15,25 +15,25 @@ Thai string tokenizer is a dotnet Library tokenizer and Substring for Thai langu
 ### Package Manager
 
 ```bat
-Install-Package ThaiStringTokenizer -Version 0.6.1
+Install-Package ThaiStringTokenizer -Version 0.8.0
 ```
 
 ### .NET CLI
 
 ```sh
-dotnet add package ThaiStringTokenizer --version 0.6.1
+dotnet add package ThaiStringTokenizer --version 0.8.0
 ```
 
 ### PackageReference
 
 ```xml
-<PackageReference Include="ThaiStringTokenizer" Version="0.6.1" />
+<PackageReference Include="ThaiStringTokenizer" Version="0.8.0" />
 ```
 
 ### Paket CLI
 
 ```sh
-paket add ThaiStringTokenizer --version 0.6.1
+paket add ThaiStringTokenizer --version 0.8.0
 ```
 
 ## Usage
@@ -51,26 +51,10 @@ public void SplitWord()
     var text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
     var results = tokenizer.Split(text);
 
-    foreach(var result in results){
-        Console.WriteLine(result);
-    }
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [ปลา|ที่|ใหญ่|ที่สุด|ใน|โลก|คือ|ปารีส|ชุบ|แป้ง|ทอด]
 }
-```
-
-#### result1
-
-```text
-ปลา
-ที่
-ใหญ่
-ที่สุด
-ใน
-โลก
-คือ
-ปารีส
-ชุบ
-แป้ง
-ทอด
 ```
 
 ### SubThaiString
@@ -87,17 +71,10 @@ public void SubstringThaiStyle()
     var maxLenght = 20;
     var result = tokenizer.SubThaiString(text, maxLength);
 
-    foreach(var result in results){
-        Console.WriteLine(result);
-    }
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [ปลาที่ใหญ่ที่สุดในโลกคือ|ปารีสชุบแป้งทอด]
 }
-```
-
-#### result2
-
-```text
-ปลาที่ใหญ่ที่สุดในโลกคือ
-ปารีสชุบแป้งทอด
 ```
 
 ### SubThaiStringAndCount
@@ -112,20 +89,16 @@ public void SubstringThaiStyle()
 {
     var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
 
-    var tokenizer = new ThaiTokenizer(removeSpace: false);
+    var tokenizer = new ThaiTokenizer(noSpace: false);
     var results = tokenizer.SubThaiStringAndCount(input, 24);
 
-    foreach(var result in results){
+    foreach (var result in results) {
         Console.WriteLine("word = {0}, countable = {1}, uncountable = {2}", result.Words, result.Countable, result.Uncountable);
     }
+
+    // Words = ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว, Countable = 24, Uncountable = 9
+    // Words =  แล้วเขาจะรู้ว่ารักหรือเปล่า, Countable = 21, Uncountable = 7
 }
-```
-
-#### result3
-
-```text
-Words = ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว, Countable = 24, Uncountable = 9
-Words =  แล้วเขาจะรู้ว่ารักหรือเปล่า, Countable = 21, Uncountable = 7
 ```
 
 ### Append custom dictionary
@@ -137,34 +110,15 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var customDictionary = new List<string>{ "หวัดดี", "หวักลี", "เชอแตม" };
+    var customDictionary = new List<string> { "หวัดดี", "หวักลี", "เชอแตม" };
     var tokenizer = new ThaiTokenizer(customDictionary);
     var text = "หวักลีหวัดดีปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอดเชอแตม";
     var results = tokenizer.Split(text);
 
-    foreach(var result in results){
-        Console.WriteLine(result);
-    }
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [หวักลี|หวัดดี|ปลา|ที่|ใหญ่|ที่สุด|ใน|โลก|คือ|ปารีส|ชุบ|แป้ง|ทอด|เชอแตม]
 }
-```
-
-#### result4
-
-```text
-หวักลี
-หวัดดี
-ปลา
-ที่
-ใหญ่
-ที่สุด
-ใน
-โลก
-คือ
-ปารีส
-ชุบ
-แป้ง
-ทอด
-เชอแตม
 ```
 
 ### Do not remove space
@@ -176,24 +130,37 @@ using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
-    var tokenizer = new ThaiTokenizer(removeSpace: false);
+    var tokenizer = new ThaiTokenizer(noSpace: false);
     var text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
     var maxLenght = 50;
     var results = tokenizer.SubThaiString(text, maxLength);
 
-    foreach(var result in results){
-        Console.WriteLine(result);
-    }
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์]
 }
 ```
 
-#### result5
+### Short word 1
 
-```text
-อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์
+```cs
+using System;
+using System.Collections.Generic;
+using ThaiStringTokenizer;
+
+public void SplitWord()
+{
+    var tokenizer = new ThaiTokenizer(shortWordFirst: true);
+    var text = "เจริญ";
+    var results = tokenizer.Split(text);
+
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [เจ|ริญ]
+}
 ```
 
-### Short word priority first
+### Short word 2
 
 ```cs
 using System;
@@ -206,19 +173,10 @@ public void SplitWord()
     var text = "ศิริวิมล";
     var results = tokenizer.Split(text);
 
-    foreach(var result in results){
-        Console.WriteLine(result);
-    }
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [ศิ|ริ|วิ|มล]
 }
-```
-
-#### result6
-
-```text
-ศิ
-ริ
-วิ
-มล
 ```
 
 ## License
