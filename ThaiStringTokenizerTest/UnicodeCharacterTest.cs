@@ -6,10 +6,19 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest6
+    public class UnicodeCharacterTest
     {
         [Fact]
-        public void TestCountBasicLatinCharacters()
+        public void CountThaiUnicodeCharactersTest()
+        {
+            var characters = ThaiUnicodeCharacter.Characters;
+            var expectedCharacters = 87;
+
+            Assert.Equal(expectedCharacters, characters.Count);
+        }
+
+        [Fact]
+        public void CountBasicLatinCharactersTest()
         {
             var characters = BasicLatinCharacter.Characters;
             var expectedCharactersExcludeSpace = 94;

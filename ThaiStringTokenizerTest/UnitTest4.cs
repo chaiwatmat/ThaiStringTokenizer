@@ -27,13 +27,5 @@ namespace ThaiStringTokenizerTest
 
             Verify(tokenizer, input, expected, results);
         }
-
-        [Fact]
-        public void TestGetAllThaiUnicodeCharacters()
-        {
-            var characters = ThaiUnicodeCharacter.Characters;
-
-            Assert.True(characters.Count == 87);
-        }
     }
 }
