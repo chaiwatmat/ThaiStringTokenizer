@@ -30,6 +30,6 @@ namespace ThaiStringTokenizer.Handlers
             return index;
         }
 
-        public virtual bool IsMatch(char charNumber) => true;
+        public virtual bool IsMatch(char character) => true;
     }
 }

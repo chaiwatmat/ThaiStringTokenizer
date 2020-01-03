@@ -83,8 +83,8 @@ namespace ThaiStringTokenizer.Handlers
             }
         }
 
-        private bool IsRequiredSpelling(char charNumber) => ThaiUnicodeCharacter.PostpendVowelsRequiredSpelling.Contains(charNumber);
+        private bool IsRequiredSpelling(char character) => ThaiUnicodeCharacter.PostpendVowelsRequiredSpelling.Contains(character);
 
-        public override bool IsMatch(char charNumber) => ThaiUnicodeCharacter.Characters.Contains(charNumber);
+        public override bool IsMatch(char character) => ThaiUnicodeCharacter.Characters.Contains(character);
     }
 }
