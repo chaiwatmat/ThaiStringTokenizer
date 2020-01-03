@@ -89,7 +89,7 @@ public void SubstringThaiStyle()
 {
     var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
 
-    var tokenizer = new ThaiTokenizer(noSpace: false);
+    var tokenizer = new ThaiTokenizer();
     var results = tokenizer.SubThaiStringAndCount(input, 24);
 
     foreach (var result in results) {
@@ -130,7 +130,7 @@ using ThaiStringTokenizer;
 
 public void SubstringThaiStyle()
 {
-    var tokenizer = new ThaiTokenizer(noSpace: false);
+    var tokenizer = new ThaiTokenizer();
     var text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
     var maxLenght = 50;
     var results = tokenizer.SubThaiString(text, maxLength);

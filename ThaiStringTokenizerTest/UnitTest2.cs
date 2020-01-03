@@ -20,8 +20,10 @@ namespace ThaiStringTokenizerTest
             {
                 "พุทธัง",
                 "อาราธนานัง",
+                " ",
                 "ธัมมัง",
                 "อาราธนานัง",
+                " ",
                 "สังฆัง",
                 "อาราธนานัง"
             };
@@ -39,7 +41,7 @@ namespace ThaiStringTokenizerTest
 
             var expected = new List<string>
             {
-                "พุทธังอาราธนานังธัมมังอาราธนานังสังฆังอาราธนานัง"
+                "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง"
             };
 
             Verify(tokenizer, input, expected, results);

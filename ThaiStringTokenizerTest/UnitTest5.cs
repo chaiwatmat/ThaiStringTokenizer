@@ -17,7 +17,7 @@ namespace ThaiStringTokenizerTest
                 "Hello สวัสดี ไทยคำ อังกฤษคำ"
             };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, input.Length);
 
             Verify(tokenizer, input, expected, results);
@@ -32,7 +32,7 @@ namespace ThaiStringTokenizerTest
                 "Hello สวัสดี ไทยคำ อังกฤษคำ 1234"
             };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, input.Length);
 
             Verify(tokenizer, input, expected, results);
@@ -56,7 +56,7 @@ namespace ThaiStringTokenizerTest
             var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234a Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
 
             var expected0 = GlobalExpectedResult.GetExpectedResult2();
-            var expected1 = new List<string> { "a" };
+            var expected1 = new List<string> { "a", " " };
 
             var expected = expected0;
             expected.AddRange(expected1);

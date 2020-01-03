@@ -11,7 +11,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void LongWordTest1()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: false);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: false);
             var input = "บางครั้ง";
             var results = tokenizer.Split(input);
 

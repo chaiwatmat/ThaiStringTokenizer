@@ -9,9 +9,8 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : TokenizerBase
     {
-        public ThaiTokenizer(List<string> customWords = null, bool noSpace = true, bool shortWordFirst = false)
+        public ThaiTokenizer(List<string> customWords = null, bool shortWordFirst = false)
         {
-            NoSpace = noSpace;
             ShortWordFirst = shortWordFirst;
 
             InitialDictionary(customWords);
@@ -20,30 +19,25 @@ namespace ThaiStringTokenizer
         public List<string> Split(string input)
         {
             var resultWords = new List<string>();
-            var inputWords = NoSpace ? input.Split(' ') : new string[] { input };
             var handlers = GetCharacterHandlers();
 
-            foreach (string inputWord in inputWords)
+            var inputWordChars = input.ToCharArray();
+            var charsLength = inputWordChars.Length;
+
+            for (int i = 0; i < charsLength; i++)
             {
-                var inputWordChars = inputWord.ToCharArray();
-                var charsLength = inputWordChars.Length;
+                var character = inputWordChars[i];
 
-                for (int i = 0; i < charsLength; i++)
+                foreach (var handler in handlers)
                 {
-                    var character = inputWordChars[i];
+                    if (!handler.IsMatch(character)) { continue; }
 
-                    foreach (var handler in handlers)
-                    {
-                        if (!handler.IsMatch(character)) { continue; }
+                    handler.Dictionary = Dictionary;
+                    handler.ShortWordFirst = ShortWordFirst;
 
-                        handler.Dictionary = Dictionary;
-                        handler.NoSpace = NoSpace;
-                        handler.ShortWordFirst = ShortWordFirst;
+                    i = handler.HandleCharacter(resultWords, inputWordChars, i);
 
-                        i = handler.HandleCharacter(resultWords, inputWordChars, i);
-
-                        break;
-                    }
+                    break;
                 }
             }
 

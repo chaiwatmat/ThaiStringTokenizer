@@ -11,7 +11,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void ShortWordTest1()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: true);
             var input = "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง";
             var results = tokenizer.Split(input);
 
@@ -44,7 +44,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void ShortWordTest2()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: true);
             var input = "ตากลม";
             var results = tokenizer.Split(input);
 
@@ -60,7 +60,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void ShortWordTest3()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: true);
             var input = "กวาง";
             var results = tokenizer.Split(input);
 
@@ -75,7 +75,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void ShortWordTest4()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: true);
             var input = "บางครั้ง";
             var results = tokenizer.Split(input);
 
@@ -91,7 +91,7 @@ namespace ThaiStringTokenizerTest
         [Fact]
         public void ShortWordTest5()
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: true);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: true);
             var input = "ยังอ่ะ";
             var results = tokenizer.Split(input);
 

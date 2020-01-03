@@ -27,11 +27,15 @@ namespace ThaiStringTokenizerTest
             return new List<string>
             {
                 "Hello",
+                " ",
                 "สวัสดี",
+                " ",
                 "ไทย",
                 "คำ",
+                " ",
                 "อังกฤษ",
                 "คำ",
+                " ",
                 "1234"
             };
         }

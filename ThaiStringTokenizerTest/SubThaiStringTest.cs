@@ -12,7 +12,7 @@ namespace ThaiStringTokenizerTest
             var input = "ค่าธรรมเนียม บริการฝากเงินข้ามเขต จากบัญชี 111-111111-1 จำนวนเงินฝาก 20,500.00 บาท";
             var expected = new List<string> { input };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 80);
 
             var index = 0;
@@ -29,7 +29,7 @@ namespace ThaiStringTokenizerTest
             var input = "สบายมาก";
             var expected = GlobalExpectedResult.GetExpectedResult3();
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 4);
 
             var index = 0;
@@ -46,7 +46,7 @@ namespace ThaiStringTokenizerTest
             var input = "สบายมาก";
             var expected = GlobalExpectedResult.GetExpectedResult3();
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 5);
 
             var index = 0;
@@ -63,7 +63,7 @@ namespace ThaiStringTokenizerTest
             var input = "สบายมาก";
             var expected = GlobalExpectedResult.GetExpectedResult3();
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 6);
 
             var index = 0;
@@ -83,7 +83,7 @@ namespace ThaiStringTokenizerTest
                 "สบายมาก"
             };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 7);
 
             var index = 0;
@@ -104,7 +104,7 @@ namespace ThaiStringTokenizerTest
                 "โอ่ง โอ่งมังกรราชบุรี"
             };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 17);
 
             var index = 0;
@@ -125,7 +125,7 @@ namespace ThaiStringTokenizerTest
                 " โอ่งมังกรราชบุรี"
             };
 
-            var tokenizer = new ThaiTokenizer(noSpace: false);
+            var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, 18);
 
             var index = 0;

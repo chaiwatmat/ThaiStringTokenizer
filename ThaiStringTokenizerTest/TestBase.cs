@@ -10,7 +10,7 @@ namespace ThaiStringTokenizerTest
     {
         public virtual void Verify(string input, List<string> expected, bool shortWordFirst = false)
         {
-            var tokenizer = new ThaiTokenizer(noSpace: false, shortWordFirst: shortWordFirst);
+            var tokenizer = new ThaiTokenizer(shortWordFirst: shortWordFirst);
 
             Verify(tokenizer, input, expected);
         }

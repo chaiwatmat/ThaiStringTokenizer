@@ -6,8 +6,6 @@ namespace ThaiStringTokenizer.Handlers
     {
         Dictionary<char, List<string>> Dictionary { get; set; }
 
-        bool NoSpace { get; set; }
-
         bool ShortWordFirst { get; set; }
 
         MatchingTechnique MatchingTechnique { get; set; }

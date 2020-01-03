@@ -6,8 +6,6 @@ namespace ThaiStringTokenizer.Handlers
     {
         public virtual Dictionary<char, List<string>> Dictionary { get; set; } = new Dictionary<char, List<string>>();
 
-        public virtual bool NoSpace { get; set; }
-
         public virtual bool ShortWordFirst { get; set; }
 
         public virtual MatchingTechnique MatchingTechnique { get; set; }
