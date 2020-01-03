@@ -10,8 +10,10 @@ namespace ThaiStringTokenizer.Handlers
 
         bool ShortWordFirst { get; set; }
 
+        MatchingTechnique MatchingTechnique { get; set; }
+
         bool IsMatch(char character);
-        
+
         int HandleCharacter(List<string> resultWords, char[] characters, int index);
     }
 }

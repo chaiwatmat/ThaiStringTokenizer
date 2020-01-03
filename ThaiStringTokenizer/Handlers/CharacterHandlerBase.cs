@@ -10,6 +10,8 @@ namespace ThaiStringTokenizer.Handlers
 
         public virtual bool ShortWordFirst { get; set; }
 
+        public virtual MatchingTechnique MatchingTechnique { get; set; }
+
         public virtual int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
             var resultWord = characters[index].ToString();
