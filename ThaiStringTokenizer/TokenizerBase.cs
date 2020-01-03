@@ -9,9 +9,9 @@ namespace ThaiStringTokenizer
 {
     public abstract class TokenizerBase
     {
-        public Dictionary<char, List<string>> Dictionary { get; set; } = new Dictionary<char, List<string>>();
+        public Dictionary<char, List<string>> Dictionary { get; protected set; } = new Dictionary<char, List<string>>();
 
-        public bool ShortWordFirst { get; set; }
+        public MatchingTechnique MatchingTechnique { get; protected set; }
 
         public List<ICharacterHandler> GetCharacterHandlers()
         {

@@ -9,9 +9,9 @@ namespace ThaiStringTokenizer
 {
     public class ThaiTokenizer : TokenizerBase
     {
-        public ThaiTokenizer(List<string> customWords = null, bool shortWordFirst = false)
+        public ThaiTokenizer(List<string> customWords = null, MatchingTechnique matchingTechnique = MatchingTechnique.LongestMatching)
         {
-            ShortWordFirst = shortWordFirst;
+            MatchingTechnique = matchingTechnique;
 
             InitialDictionary(customWords);
         }
@@ -33,7 +33,7 @@ namespace ThaiStringTokenizer
                     if (!handler.IsMatch(character)) { continue; }
 
                     handler.Dictionary = Dictionary;
-                    handler.ShortWordFirst = ShortWordFirst;
+                    handler.MatchingTechnique = MatchingTechnique;
 
                     i = handler.HandleCharacter(resultWords, inputWordChars, i);
 

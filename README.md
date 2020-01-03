@@ -150,7 +150,7 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var tokenizer = new ThaiTokenizer(shortWordFirst: true);
+    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.ShortestMatching);
     var text = "เจริญ";
     var results = tokenizer.Split(text);
 
@@ -169,7 +169,26 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var tokenizer = new ThaiTokenizer(shortWordFirst: true);
+    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.LongestMatching);
+    var text = "เจริญ";
+    var results = tokenizer.Split(text);
+
+    Console.WriteLine("results = [{0}]", string.Join('|', results));
+
+    // results = [เจริญ]
+}
+```
+
+### Short word 3
+
+```cs
+using System;
+using System.Collections.Generic;
+using ThaiStringTokenizer;
+
+public void SplitWord()
+{
+    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.ShortestMatching);
     var text = "ศิริวิมล";
     var results = tokenizer.Split(text);
 

@@ -38,7 +38,7 @@ namespace ThaiStringTokenizer.Handlers
                     resultWord = moreCharacters;
                 }
 
-                if (ShortWordFirst && isWordFound) { break; }
+                if (MatchingTechnique == MatchingTechnique.ShortestMatching && isWordFound) { break; }
             }
 
             HandleResultWords(resultWords, resultWord, isWordFound);

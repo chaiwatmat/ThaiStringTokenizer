@@ -8,9 +8,9 @@ namespace ThaiStringTokenizerTest
 {
     public abstract class TestBase
     {
-        public virtual void Verify(string input, List<string> expected, bool shortWordFirst = false)
+        public virtual void Verify(string input, List<string> expected, MatchingTechnique matchingTechnique = MatchingTechnique.LongestMatching)
         {
-            var tokenizer = new ThaiTokenizer(shortWordFirst: shortWordFirst);
+            var tokenizer = new ThaiTokenizer(matchingTechnique: matchingTechnique);
 
             Verify(tokenizer, input, expected);
         }
