@@ -14,7 +14,7 @@ namespace ThaiStringTokenizerTest
             var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
 
             var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiStringAndCount(input).ToList(); ;
+            var results = tokenizer.SubThaiStringAndCount(input).ToList();
 
             var expectedList = 1;
             var expectedCount = 45;
@@ -31,7 +31,7 @@ namespace ThaiStringTokenizerTest
             var input = "ถ้าหากรักนี้ ไม่บอกไม่พูดไม่กล่าว แล้วเขาจะรู้ว่ารักหรือเปล่า";
 
             var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiStringAndCount(input, 24).ToList(); ;
+            var results = tokenizer.SubThaiStringAndCount(input, 24).ToList();
 
             var expectedResults = new List<ThaiStringResponse>
             {
