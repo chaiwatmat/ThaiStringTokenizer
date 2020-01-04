@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class SubThaiStringTest
+    public class SubThaiStringTest : TestBase
     {
         [Fact]
         public void SubThaiStringTest1()
@@ -134,6 +134,86 @@ namespace ThaiStringTokenizerTest
                 Assert.Equal(expected[index], x);
                 index++;
             });
+        }
+
+        [Fact]
+        public void TestSubThaiString_SupportSpace()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
+            var results = tokenizer.SubThaiString(input, 50);
+
+            var expected = new List<string>
+            {
+                "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSubThaiString_ThaiWithEnglish()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var results = tokenizer.SubThaiString(input, 50);
+
+            var expected = new List<string>
+            {
+                "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSubThaiString1()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+            var results = tokenizer.SubThaiString(input, 10);
+
+            var expected = new List<string>
+            {
+                "ปลาที่ใหญ่ที่สุด",
+                "ในโลกคือ",
+                "ปารีสชุบแป้ง",
+                "ทอด"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSubThaiString2()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
+            var results = tokenizer.SubThaiString(input, 20);
+
+            var expected = new List<string>
+            {
+                "ปลาที่ใหญ่ที่สุดในโลกคือ",
+                "ปารีสชุบแป้งทอด"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSubThaiString_RemoveSpace()
+        {
+            var appendDics = new List<string> { "พุทธัง", "ธัมมัง", "สังฆัง", "อาราธนานัง" };
+            var tokenizer = new ThaiTokenizer(appendDics);
+            var input = "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง";
+            var results = tokenizer.SubThaiString(input, 50);
+
+            var expected = new List<string>
+            {
+                "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง"
+            };
+
+            Verify(tokenizer, input, expected, results);
         }
     }
 }

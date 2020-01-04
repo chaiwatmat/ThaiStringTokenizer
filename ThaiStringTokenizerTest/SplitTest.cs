@@ -6,7 +6,7 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest1 : TestBase
+    public class SplitTest : TestBase
     {
         [Fact]
         public void Test1()
@@ -55,6 +55,47 @@ namespace ThaiStringTokenizerTest
         }
 
         [Fact]
+        public void TestToneMarkSubstring()
+        {
+            var input = "ผมอยากจะเป็นมหาเศรษฐี";
+            var expected = new List<string>
+            {
+                "ผม",
+                "อยาก",
+                "จะ",
+                "เป็น",
+                "มหาเศรษฐี"
+            };
+
+            var tokenizer = new ThaiTokenizer();
+            var results = tokenizer.Split(input);
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSplit_RemoveSpace()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "อาราธนา",
+                "พระพุทธ",
+                " ",
+                "อาราธนา",
+                "พระธรรม",
+                " ",
+                "อาราธนา",
+                "พระสงฆ์"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
         public void Test3()
         {
             var appendDictionary = new List<string> { "หวัดดี", "หวักลี", "เชอแตม" };
@@ -90,40 +131,6 @@ namespace ThaiStringTokenizerTest
                 "เป็น",
                 "เพียง",
                 "ความฝัน",
-            };
-
-            Verify(tokenizer, input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubThaiString1()
-        {
-            var tokenizer = new ThaiTokenizer();
-            var input = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
-            var results = tokenizer.SubThaiString(input, 10);
-
-            var expected = new List<string>
-            {
-                "ปลาที่ใหญ่ที่สุด",
-                "ในโลกคือ",
-                "ปารีสชุบแป้ง",
-                "ทอด"
-            };
-
-            Verify(tokenizer, input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubThaiString2()
-        {
-            var tokenizer = new ThaiTokenizer();
-            var input = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
-            var results = tokenizer.SubThaiString(input, 20);
-
-            var expected = new List<string>
-            {
-                "ปลาที่ใหญ่ที่สุดในโลกคือ",
-                "ปารีสชุบแป้งทอด"
             };
 
             Verify(tokenizer, input, expected, results);

@@ -99,5 +99,65 @@ namespace ThaiStringTokenizerTest
 
             Verify(tokenizer, input, expected, results);
         }
+
+        [Fact]
+        public void TestSplit_ThaiWithEnglish()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "ทดสอบ",
+                "ไทย",
+                "คำ",
+                " ",
+                "อังกฤษ",
+                "คำ",
+                " ",
+                "Test",
+                " ",
+                "Thai",
+                " ",
+                "language",
+                " ",
+                "with",
+                " ",
+                "English"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
+
+        [Fact]
+        public void TestSplitKeepSpace_ThaiWithEnglish()
+        {
+            var tokenizer = new ThaiTokenizer();
+            var input = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
+            var results = tokenizer.Split(input);
+
+            var expected = new List<string>
+            {
+                "ทดสอบ",
+                "ไทย",
+                "คำ",
+                " ",
+                "อังกฤษ",
+                "คำ",
+                " ",
+                "Test",
+                " ",
+                "Thai",
+                " ",
+                "language",
+                " ",
+                "with",
+                " ",
+                "English"
+            };
+
+            Verify(tokenizer, input, expected, results);
+        }
     }
 }

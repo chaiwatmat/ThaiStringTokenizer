@@ -6,7 +6,7 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest2 : TestBase
+    public class AppendDicTest : TestBase
     {
         [Fact]
         public void TestSplit_RemoveSpace()
@@ -26,22 +26,6 @@ namespace ThaiStringTokenizerTest
                 " ",
                 "สังฆัง",
                 "อาราธนานัง"
-            };
-
-            Verify(tokenizer, input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubThaiString_RemoveSpace()
-        {
-            var appendDics = new List<string> { "พุทธัง", "ธัมมัง", "สังฆัง", "อาราธนานัง" };
-            var tokenizer = new ThaiTokenizer(appendDics);
-            var input = "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง";
-            var results = tokenizer.SubThaiString(input, 50);
-
-            var expected = new List<string>
-            {
-                "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง"
             };
 
             Verify(tokenizer, input, expected, results);
