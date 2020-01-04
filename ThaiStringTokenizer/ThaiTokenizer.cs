@@ -91,19 +91,15 @@ namespace ThaiStringTokenizer
             return lines;
         }
 
-        public List<ThaiStringResponse> SubThaiStringAndCount(string input, int length = int.MaxValue)
+        public IEnumerable<ThaiStringResponse> SubThaiStringAndCount(string input, int length = int.MaxValue)
         {
             var results = SubThaiString(input, length);
             var responses = new List<ThaiStringResponse>();
 
-            foreach (var sentence in results)
+            foreach (string sentence in results)
             {
-                var response = new ThaiStringResponse { Words = sentence };
-
-                responses.Add(response);
+                yield return new ThaiStringResponse { Words = sentence };
             }
-
-            return responses;
         }
     }
 }
