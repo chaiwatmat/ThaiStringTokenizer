@@ -6,48 +6,15 @@ using Xunit;
 
 namespace ThaiStringTokenizerTest
 {
-    public class UnitTest5 : TestBase
+    public class SplitMultipleLanguageTest : TestBase
     {
-        [Fact]
-        public void TestSubstring_ThaiWithEnglish()
-        {
-            var input = "Hello สวัสดี ไทยคำ อังกฤษคำ";
-            var expected = new List<string>
-            {
-                "Hello สวัสดี ไทยคำ อังกฤษคำ"
-            };
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, input.Length);
-
-            Verify(tokenizer, input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubstring_ThaiWithEnglishWithNumber()
-        {
-            var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
-            var expected = new List<string>
-            {
-                "Hello สวัสดี ไทยคำ อังกฤษคำ 1234"
-            };
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, input.Length);
-
-            Verify(tokenizer, input, expected, results);
-        }
-
         [Fact]
         public void TestSplit_ThaiWithEnglishWithNumber()
         {
             var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
             var expected = GlobalExpectedResult.GetExpectedResult2();
 
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.Split(input);
-
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected);
         }
 
         [Fact]
@@ -62,10 +29,7 @@ namespace ThaiStringTokenizerTest
             expected.AddRange(expected1);
             expected.AddRange(expected0);
 
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.Split(input);
-
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected);
         }
 
         [Fact]
@@ -78,10 +42,7 @@ namespace ThaiStringTokenizerTest
                 "1234"
             };
 
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.Split(input);
-
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected);
         }
 
         [Fact]
@@ -94,19 +55,13 @@ namespace ThaiStringTokenizerTest
                 "1234"
             };
 
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.Split(input);
-
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected);
         }
 
         [Fact]
         public void TestSplit_ThaiWithEnglish()
         {
-            var tokenizer = new ThaiTokenizer();
             var input = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
-            var results = tokenizer.Split(input);
-
             var expected = new List<string>
             {
                 "ทดสอบ",
@@ -127,7 +82,7 @@ namespace ThaiStringTokenizerTest
                 "English"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected);
         }
     }
 }
