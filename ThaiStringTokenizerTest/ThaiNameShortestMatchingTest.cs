@@ -31,5 +31,13 @@ namespace ThaiStringTokenizerTest
             var expected = new List<string> { "เจ", "ริญ", "ยิ่ง", " ", "การ", "ช่าง" };
             Verify(input, expected, MatchingTechnique.ShortestMatching);
         }
+
+        [Fact]
+        public void SampleTest3()
+        {
+            var input = "เจริญยนต์ การช่าง";
+            var expected = new List<string> { "เจ", "ริญ", "ยนต์", " ", "การ", "ช่าง" };
+            Verify(input, expected, MatchingTechnique.ShortestMatching);
+        }
     }
 }

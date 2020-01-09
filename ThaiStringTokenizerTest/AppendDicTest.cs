@@ -28,7 +28,7 @@ namespace ThaiStringTokenizerTest
                 "อาราธนานัง"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace ThaiStringTokenizerTest
             expected.AddRange(expected1);
             expected.AddRange(expected2);
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace ThaiStringTokenizerTest
                 "ความฝัน",
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
     }
 }

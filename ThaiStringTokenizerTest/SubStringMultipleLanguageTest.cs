@@ -20,7 +20,7 @@ namespace ThaiStringTokenizerTest
             var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, input.Length);
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace ThaiStringTokenizerTest
             var tokenizer = new ThaiTokenizer();
             var results = tokenizer.SubThaiString(input, input.Length);
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
     }
 }

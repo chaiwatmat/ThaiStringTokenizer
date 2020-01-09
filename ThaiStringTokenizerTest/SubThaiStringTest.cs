@@ -148,7 +148,7 @@ namespace ThaiStringTokenizerTest
                 "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -163,7 +163,7 @@ namespace ThaiStringTokenizerTest
                 "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace ThaiStringTokenizerTest
                 "ทอด"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -197,7 +197,7 @@ namespace ThaiStringTokenizerTest
                 "ปารีสชุบแป้งทอด"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
 
         [Fact]
@@ -213,7 +213,7 @@ namespace ThaiStringTokenizerTest
                 "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง"
             };
 
-            Verify(tokenizer, input, expected, results);
+            Verify(input, expected, results);
         }
     }
 }

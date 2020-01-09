@@ -30,7 +30,7 @@ namespace ThaiStringTokenizerTest
             }
         }
 
-        public virtual void Verify(ThaiTokenizer tokenizer, string input, List<string> expected, List<string> results)
+        public virtual void Verify(string input, List<string> expected, List<string> results)
         {
             Console.WriteLine("==============");
             Console.WriteLine("input = {0}", input);
