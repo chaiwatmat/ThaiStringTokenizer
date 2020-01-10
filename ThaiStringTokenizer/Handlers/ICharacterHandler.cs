@@ -6,7 +6,7 @@ namespace ThaiStringTokenizer.Handlers
     {
         Dictionary<char, List<string>> Dictionary { get; set; }
 
-        MatchingTechnique MatchingTechnique { get; set; }
+        MatchingMode MatchingMode { get; set; }
 
         bool IsMatch(char character);
 

@@ -35,7 +35,7 @@ namespace ThaiStringTokenizerTest
                 "นัง",
             };
 
-            Verify(input, expected, MatchingTechnique.ShortestMatching);
+            Verify(input, expected, MatchingMode.Shortest);
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace ThaiStringTokenizerTest
                 "กลม"
             };
 
-            Verify(input, expected, MatchingTechnique.ShortestMatching);
+            Verify(input, expected, MatchingMode.Shortest);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace ThaiStringTokenizerTest
                 "กวาง"
             };
 
-            Verify(input, expected, MatchingTechnique.ShortestMatching);
+            Verify(input, expected, MatchingMode.Shortest);
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace ThaiStringTokenizerTest
                 "ครั้ง"
             };
 
-            Verify(input, expected, MatchingTechnique.ShortestMatching);
+            Verify(input, expected, MatchingMode.Shortest);
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace ThaiStringTokenizerTest
                 "อ่ะ"
             };
 
-            Verify(input, expected, MatchingTechnique.ShortestMatching);
+            Verify(input, expected, MatchingMode.Shortest);
         }
     }
 }

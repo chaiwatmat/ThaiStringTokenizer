@@ -11,7 +11,7 @@ namespace ThaiStringTokenizer
     {
         public Dictionary<char, List<string>> Dictionary { get; protected set; } = new Dictionary<char, List<string>>();
 
-        public MatchingTechnique MatchingTechnique { get; protected set; }
+        public MatchingMode MatchingMode { get; protected set; }
 
         public List<ICharacterHandler> GetCharacterHandlers()
         {

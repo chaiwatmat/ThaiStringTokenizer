@@ -114,7 +114,7 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.ShortestMatching);
+    var tokenizer = new ThaiTokenizer(matchingMode: MatchingMode.Shortest);
     var text = "เจริญ";
     var results = tokenizer.Split(text);
 
@@ -133,7 +133,7 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.LongestMatching);
+    var tokenizer = new ThaiTokenizer(matchingMode: MatchingMode.Longest);
     var text = "เจริญ";
     var results = tokenizer.Split(text);
 
@@ -152,7 +152,7 @@ using ThaiStringTokenizer;
 
 public void SplitWord()
 {
-    var tokenizer = new ThaiTokenizer(matchingTechnique: MatchingTechnique.ShortestMatching);
+    var tokenizer = new ThaiTokenizer(matchingMode: MatchingMode.Shortest);
     var text = "ศิริวิมล";
     var results = tokenizer.Split(text);
 

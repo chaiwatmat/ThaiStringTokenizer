@@ -1,8 +1,8 @@
 namespace ThaiStringTokenizer
 {
-    public enum MatchingTechnique
+    public enum MatchingMode
     {
-        ShortestMatching,
-        LongestMatching
+        Shortest,
+        Longest
     }
 }

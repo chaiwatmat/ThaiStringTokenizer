@@ -6,7 +6,7 @@ namespace ThaiStringTokenizer.Handlers
     {
         public virtual Dictionary<char, List<string>> Dictionary { get; set; } = new Dictionary<char, List<string>>();
 
-        public virtual MatchingTechnique MatchingTechnique { get; set; }
+        public virtual MatchingMode MatchingMode { get; set; }
 
         public virtual int HandleCharacter(List<string> resultWords, char[] characters, int index)
         {
