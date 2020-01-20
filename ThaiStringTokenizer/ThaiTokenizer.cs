@@ -16,6 +16,13 @@ namespace ThaiStringTokenizer
             InitialDictionary(customWords);
         }
 
+        public ThaiTokenizer(TokenizerOptions tokenizerOptions)
+        {
+            MatchingMode = tokenizerOptions.MatchingMode;
+
+            InitialDictionary(tokenizerOptions.CustomWords);
+        }
+
         public List<string> Split(string input)
         {
             var resultWords = new List<string>();
