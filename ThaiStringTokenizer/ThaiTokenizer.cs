@@ -19,6 +19,7 @@ namespace ThaiStringTokenizer
         public ThaiTokenizer(TokenizerOptions tokenizerOptions)
         {
             MatchingMode = tokenizerOptions.MatchingMode;
+            PreferDecodableWord = tokenizerOptions.PreferDecodableWord;
 
             InitialDictionary(tokenizerOptions.CustomWords);
         }
@@ -48,7 +49,49 @@ namespace ThaiStringTokenizer
                 }
             }
 
-            return resultWords;
+            return AnalyzeWords(resultWords);
+        }
+
+        private List<string> AnalyzeWords(List<string> resultWords)
+        {
+            if (!PreferDecodableWord) { return resultWords; }
+
+            var finalResults = new List<string>();
+            var resultLength = resultWords.Count;
+
+            for (int i = 0; i < resultLength; i++)
+            {
+                var word = resultWords[i];
+                var isWordFound = Words.Contains(word);
+                var isSpace = string.IsNullOrWhiteSpace(word);
+
+                if (isWordFound || isSpace)
+                {
+                    finalResults.Add(word);
+                    continue;
+                }
+
+                var lastFinalResultIndex = finalResults.Count - 1;
+                if (lastFinalResultIndex < 0)
+                {
+                    finalResults.Add(word);
+                    continue;
+                }
+
+                var previousWord = finalResults[lastFinalResultIndex];
+                var mergeWord = $"{previousWord}{word}";
+                var isMergeWordFound = Words.Contains(mergeWord);
+
+                if (isMergeWordFound)
+                {
+                    finalResults[lastFinalResultIndex] += word;
+                    continue;
+                }
+
+                finalResults.Add(word);
+            }
+
+            return finalResults;
         }
 
         public List<string> SubThaiString(string input, int length)

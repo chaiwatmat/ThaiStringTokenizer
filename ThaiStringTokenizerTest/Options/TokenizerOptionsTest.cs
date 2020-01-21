@@ -19,5 +19,17 @@ namespace ThaiStringTokenizerTest
 
             Verify(tokenizer, input, expected);
         }
+
+        [Fact]
+        public void Test2()
+        {
+            var input = "เจริญ";
+            var expected = new List<string> { "เจริญ" };
+
+            var options = new TokenizerOptions { MatchingMode = MatchingMode.Shortest, PreferDecodableWord = true };
+            var tokenizer = new ThaiTokenizer(options);
+
+            Verify(tokenizer, input, expected);
+        }
     }
 }

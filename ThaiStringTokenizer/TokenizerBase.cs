@@ -13,6 +13,10 @@ namespace ThaiStringTokenizer
 
         public MatchingMode MatchingMode { get; protected set; }
 
+        public List<string> Words { get; protected set; }
+
+        public bool PreferDecodableWord { get; protected set; }
+
         public List<ICharacterHandler> GetCharacterHandlers()
         {
             return new List<ICharacterHandler>
@@ -33,11 +37,11 @@ namespace ThaiStringTokenizer
             var textStreamReader = new StreamReader(stream);
             var textWords = textStreamReader.ReadToEnd();
 
-            var words = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
+            Words = textWords.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
 
-            if (customWords != null && customWords.Any()) { words.InsertRange(0, customWords); }
+            if (customWords != null && customWords.Any()) { Words.InsertRange(0, customWords); }
 
-            return words;
+            return Words;
         }
 
         public void InitialDictionary(List<string> customWords = null)

@@ -6,5 +6,6 @@ namespace ThaiStringTokenizer
     {
         public List<string> CustomWords { get; set; }
         public MatchingMode MatchingMode { get; set; } = MatchingMode.Longest;
+        public bool PreferDecodableWord { get; set; }
     }
 }
