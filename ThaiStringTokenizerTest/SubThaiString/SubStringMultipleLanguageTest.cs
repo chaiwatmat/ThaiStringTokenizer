@@ -8,28 +8,14 @@ namespace ThaiStringTokenizerTest
 {
     public class SubStringMultipleLanguageTest : TestBase
     {
-        [Fact]
-        public void TestSubstring_ThaiWithEnglish()
+        [Theory]
+        [InlineData("Hello สวัสดี ไทยคำ อังกฤษคำ")]
+        [InlineData("Hello สวัสดี ไทยคำ อังกฤษคำ 1234")]
+        public void TestSubstring_ThaiWithEnglishWithNumber(string input)
         {
-            var input = "Hello สวัสดี ไทยคำ อังกฤษคำ";
             var expected = new List<string>
             {
-                "Hello สวัสดี ไทยคำ อังกฤษคำ"
-            };
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, input.Length);
-
-            Verify(input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubstring_ThaiWithEnglishWithNumber()
-        {
-            var input = "Hello สวัสดี ไทยคำ อังกฤษคำ 1234";
-            var expected = new List<string>
-            {
-                "Hello สวัสดี ไทยคำ อังกฤษคำ 1234"
+                input
             };
 
             var tokenizer = new ThaiTokenizer();
