@@ -5,6 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/chaiwatmat/ThaiStringTokenizer/badge.svg)](https://coveralls.io/github/chaiwatmat/ThaiStringTokenizer)
 ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/nuget/thaistringtokenizer)
 [![CodeFactor](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer/badge)](https://www.codefactor.io/repository/github/chaiwatmat/thaistringtokenizer)
+[![Maintainability](https://api.codeclimate.com/v1/badges/99f55ad21a6ece650dc5/maintainability)](https://codeclimate.com/github/chaiwatmat/ThaiStringTokenizer/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/99f55ad21a6ece650dc5/test_coverage)](https://codeclimate.com/github/chaiwatmat/ThaiStringTokenizer/test_coverage)
 [![Nuget Version](https://img.shields.io/nuget/v/ThaiStringTokenizer.svg)](https://www.nuget.org/packages/ThaiStringTokenizer)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/ThaiStringTokenizer.svg)](https://www.nuget.org/packages/ThaiStringTokenizer)
 
