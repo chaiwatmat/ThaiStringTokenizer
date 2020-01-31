@@ -100,9 +100,9 @@ namespace ThaiStringTokenizer
             var line = "";
             var lineCount = 0;
             var words = Split(input);
-            var maxIndex = words.Count - 1;
+            var lastIndex = words.Count - 1;
 
-            for (var i = 0; i <= maxIndex; i++)
+            for (var i = 0; i <= lastIndex; i++)
             {
                 var word = words[i];
 
@@ -113,10 +113,9 @@ namespace ThaiStringTokenizer
                 {
                     line += word;
 
-                    if (i == maxIndex)
-                    {
-                        lines.Add(line);
-                    }
+                    if (i != lastIndex) { continue; }
+
+                    lines.Add(line);
                 }
                 else if (lineCount == length)
                 {
@@ -131,10 +130,9 @@ namespace ThaiStringTokenizer
                     lineCount = consonant.Countable;
                     line = word;
 
-                    if (i == maxIndex)
-                    {
-                        lines.Add(line);
-                    }
+                    if (i != lastIndex) { continue; }
+
+                    lines.Add(line);
                 }
             }
 
