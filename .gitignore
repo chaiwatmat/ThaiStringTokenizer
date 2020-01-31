@@ -45,6 +45,10 @@ codecov
 coverage.opencover.xml
 report/
 coverage.info
+lcov.info
 
 # Cakebuild
 tools/
+
+# Executes
+cc-test-reporter
