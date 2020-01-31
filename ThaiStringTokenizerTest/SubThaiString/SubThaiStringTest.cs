@@ -63,39 +63,13 @@ namespace ThaiStringTokenizerTest
             });
         }
 
-        [Fact]
-        public void SubThaiStringTest6()
+        [Theory]
+        [InlineData(17, "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี", "ไก่จิกเด็กตายบนปาก", "โอ่ง โอ่งมังกรราชบุรี")]
+        [InlineData(18, "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี", "ไก่จิกเด็กตายบนปากโอ่ง", " โอ่งมังกรราชบุรี")]
+        public void SubThaiStringTest6(int length, string input, params string[] expected)
         {
-            var input = "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี";
-            var expected = new List<string>
-            {
-                "ไก่จิกเด็กตายบนปาก",
-                "โอ่ง โอ่งมังกรราชบุรี"
-            };
-
             var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, 17);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-        }
-
-        [Fact]
-        public void SubThaiStringTest7()
-        {
-            var input = "ไก่จิกเด็กตายบนปากโอ่ง โอ่งมังกรราชบุรี";
-            var expected = new List<string>
-            {
-                "ไก่จิกเด็กตายบนปากโอ่ง",
-                " โอ่งมังกรราชบุรี"
-            };
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, 18);
+            var results = tokenizer.SubThaiString(input, length);
 
             var index = 0;
             results.ForEach(x =>
