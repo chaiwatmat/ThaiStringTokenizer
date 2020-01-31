@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: Setup .NET Core
@@ -18,6 +17,13 @@ jobs:
       - name: Build with dotnet
         run: |
           dotnet build --configuration Debug
+      # test:
+      #   needs: [build]
+      #   runs-on: ubuntu-latest
+      #   steps:
+      - name: prepare exec code climate
+        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
+        # curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-darwin-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
       - name: Run unit test result lcov
         run: |
           dotnet test \
@@ -31,15 +37,19 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./ThaiStringTokenizerTest/coverage.info # optional (default value)
-      - name: Publish code coverage to codeclimate
-        uses: paambaati/codeclimate-action@v2.4.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          debug: true
-          coverageLocations: ./ThaiStringTokenizerTest/coverage.info
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: "true"
+      - name: code climate
+        run: ./cc-test-reporter after-build -t lcov --exit-code $? || echo  “Skipping Code Climate coverage upload”
+
+      - name: Publish code coverage to codeclimate
+        uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run coverage
+          debug: true
+          coverageLocations: ./ThaiStringTokenizerTest/coverage.info
