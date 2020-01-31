@@ -8,35 +8,15 @@ namespace ThaiStringTokenizerTest
 {
     public class ThaiNameLongestMatchingTest : TestBase
     {
-        [Fact]
-        public void SampleTest0()
+        [Theory]
+        [InlineData("กุญจ์สิริลัญฉกร", "กุญจ์", "สิริลัญ", "ฉกร")]
+        [InlineData("โชติกานต์ ศรีสุวรรณ์", "โชติกานต์", " ", "ศรีสุวรรณ์")]
+        [InlineData("กุญจ์สิริลัญฉกร พจชรดลญา ณ สงขลา", "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ สงขลา")]
+        [InlineData("กุญจ์สิริลัญฉกร พจชรดลญา ณ นคร", "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ นคร")]
+        public void SampleTest2(string input, params string[] expects)
         {
-            var input = "กุญจ์สิริลัญฉกร";
-            var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร" };
-            Verify(input, expected);
-        }
+            var expected = expects.ToList();
 
-        [Fact]
-        public void SampleTest1()
-        {
-            var input = "โชติกานต์ ศรีสุวรรณ์";
-            var expected = new List<string> { "โชติกานต์", " ", "ศรีสุวรรณ์" };
-            Verify(input, expected);
-        }
-
-        [Fact]
-        public void SampleTest2()
-        {
-            var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ สงขลา";
-            var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ สงขลา" };
-            Verify(input, expected);
-        }
-
-        [Fact]
-        public void SampleTest3()
-        {
-            var input = "กุญจ์สิริลัญฉกร พจชรดลญา ณ นคร";
-            var expected = new List<string> { "กุญจ์", "สิริลัญ", "ฉกร", " ", "พจ", "ชร", "ดล", "ญา", " ", "ณ นคร" };
             Verify(input, expected);
         }
 
