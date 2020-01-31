@@ -14,79 +14,26 @@ namespace ThaiStringTokenizerTest
             var input = "พุทธังอาราธนานัง ธัมมังอาราธนานัง สังฆังอาราธนานัง";
             var expected = new List<string>
             {
-                "พุทธัง",
-                "อา",
-                "รา",
-                "ธนา",
-                "นัง",
+                "พุทธัง", "อา", "รา", "ธนา","นัง",
                 " ",
-                "ธัม",
-                "มัง",
-                "อา",
-                "รา",
-                "ธนา",
-                "นัง",
+                "ธัม", "มัง", "อา", "รา", "ธนา", "นัง",
                 " ",
-                "สัง",
-                "ฆัง",
-                "อา",
-                "รา",
-                "ธนา",
-                "นัง",
+                "สัง", "ฆัง", "อา", "รา", "ธนา", "นัง",
             };
 
             Verify(input, expected, MatchingMode.Shortest);
         }
 
-        [Fact]
-        public void ShortWordTest2()
+        [Theory]
+        [InlineData("ตากลม", "ตา", "กลม")]
+        [InlineData("กวาง", "กวาง")]
+        [InlineData("บางครั้ง", "บาง", "ครั้ง")]
+        [InlineData("ยังอ่ะ", "ยัง", "อ่ะ")]
+        public void ShortWordTest2(string input, params string[] expected)
         {
-            var input = "ตากลม";
-            var expected = new List<string>
-            {
-                "ตา",
-                "กลม"
-            };
+            var expectedList = expected.ToList();
 
-            Verify(input, expected, MatchingMode.Shortest);
-        }
-
-        [Fact]
-        public void ShortWordTest3()
-        {
-            var input = "กวาง";
-            var expected = new List<string>
-            {
-                "กวาง"
-            };
-
-            Verify(input, expected, MatchingMode.Shortest);
-        }
-
-        [Fact]
-        public void ShortWordTest4()
-        {
-            var input = "บางครั้ง";
-            var expected = new List<string>
-            {
-                "บาง",
-                "ครั้ง"
-            };
-
-            Verify(input, expected, MatchingMode.Shortest);
-        }
-
-        [Fact]
-        public void ShortWordTest5()
-        {
-            var input = "ยังอ่ะ";
-            var expected = new List<string>
-            {
-                "ยัง",
-                "อ่ะ"
-            };
-
-            Verify(input, expected, MatchingMode.Shortest);
+            Verify(input, expectedList, MatchingMode.Shortest);
         }
     }
 }
