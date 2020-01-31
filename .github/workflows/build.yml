@@ -21,35 +21,36 @@ jobs:
       #   needs: [build]
       #   runs-on: ubuntu-latest
       #   steps:
-      - name: prepare exec code climate
-        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
-        # curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-darwin-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter
+      - name: Get cc-test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter && \
+          chmod +x ./cc-test-reporter
+      - name: Code climate before build
+        run: ./cc-test-reporter before-build
       - name: Run unit test result lcov
         run: |
           dotnet test \
              --no-build \
             /p:CollectCoverage=true \
             /p:CoverletOutputFormat=lcov \
+            /p:CoverletOutput="../coverage/lcov.info" \
             /p:Threshold=80 \
             /p:ThresholdType=branch
       - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./ThaiStringTokenizerTest/coverage.info # optional (default value)
+          path-to-lcov: ./coverage/lcov.info
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: "true"
-      - name: code climate
-        run: ./cc-test-reporter after-build -t lcov --exit-code $? || echo  “Skipping Code Climate coverage upload”
-
       - name: Publish code coverage to codeclimate
-        uses: paambaati/codeclimate-action@v2.4.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm run coverage
-          debug: true
-          coverageLocations: ./ThaiStringTokenizerTest/coverage.info
+        run: |
+          ./cc-test-reporter after-build \
+            --coverage-input-type lcov \
+            --id ${{ CC_TEST_REPORTER_ID }} \
+            --exit-code $? || echo  "Skipping Code Climate coverage upload"
