@@ -23,48 +23,17 @@ namespace ThaiStringTokenizerTest
             });
         }
 
-        [Fact]
-        public void SubThaiStringTest2()
+        [Theory]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void SubThaiStringTest2(int length)
         {
             var input = "สบายมาก";
             var expected = GlobalExpectedResult.GetExpectedResult3();
 
             var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, 4);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-        }
-
-        [Fact]
-        public void SubThaiStringTest3()
-        {
-            var input = "สบายมาก";
-            var expected = GlobalExpectedResult.GetExpectedResult3();
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, 5);
-
-            var index = 0;
-            results.ForEach(x =>
-            {
-                Assert.Equal(expected[index], x);
-                index++;
-            });
-        }
-
-        [Fact]
-        public void SubThaiStringTest4()
-        {
-            var input = "สบายมาก";
-            var expected = GlobalExpectedResult.GetExpectedResult3();
-
-            var tokenizer = new ThaiTokenizer();
-            var results = tokenizer.SubThaiString(input, 6);
+            var results = tokenizer.SubThaiString(input, length);
 
             var index = 0;
             results.ForEach(x =>
@@ -136,31 +105,17 @@ namespace ThaiStringTokenizerTest
             });
         }
 
-        [Fact]
-        public void TestSubThaiString_SupportSpace()
+        [Theory]
+        [InlineData("อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์")]
+        [InlineData("ทดสอบไทยคำ อังกฤษคำ Test Thai language with English")]
+        public void TestSubThaiString_SupportSpaceAndEnglish(string input)
         {
             var tokenizer = new ThaiTokenizer();
-            var input = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
             var results = tokenizer.SubThaiString(input, 50);
 
             var expected = new List<string>
             {
-                "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์"
-            };
-
-            Verify(input, expected, results);
-        }
-
-        [Fact]
-        public void TestSubThaiString_ThaiWithEnglish()
-        {
-            var tokenizer = new ThaiTokenizer();
-            var input = "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English";
-            var results = tokenizer.SubThaiString(input, 50);
-
-            var expected = new List<string>
-            {
-                "ทดสอบไทยคำ อังกฤษคำ Test Thai language with English"
+                input
             };
 
             Verify(input, expected, results);
