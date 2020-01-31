@@ -8,35 +8,15 @@ namespace ThaiStringTokenizerTest
 {
     public class ThaiNameShortestMatchingTest : TestBase
     {
-        [Fact]
-        public void SampleTest0()
+        [Theory]
+        [InlineData("ศิริวิมล", "ศิ", "ริ", "วิ", "มล")]
+        [InlineData("นางสาว ศิริวิมล ยิ่งเจริญ", "นาง", "สาว", " ", "ศิ", "ริ", "วิ", "มล", " ", "ยิ่ง", "เจ", "ริญ")]
+        [InlineData("เจริญยิ่ง การช่าง", "เจ", "ริญ", "ยิ่ง", " ", "การ", "ช่าง")]
+        [InlineData("เจริญยนต์ การช่าง", "เจ", "ริญ", "ยนต์", " ", "การ", "ช่าง")]
+        public void SampleTest0(string input, params string[] expects)
         {
-            var input = "ศิริวิมล";
-            var expected = new List<string> { "ศิ", "ริ", "วิ", "มล" };
-            Verify(input, expected, MatchingMode.Shortest);
-        }
+            var expected = expects.ToList();
 
-        [Fact]
-        public void SampleTest1()
-        {
-            var input = "นางสาว ศิริวิมล ยิ่งเจริญ";
-            var expected = new List<string> { "นาง", "สาว", " ", "ศิ", "ริ", "วิ", "มล", " ", "ยิ่ง", "เจ", "ริญ" };
-            Verify(input, expected, MatchingMode.Shortest);
-        }
-
-        [Fact]
-        public void SampleTest2()
-        {
-            var input = "เจริญยิ่ง การช่าง";
-            var expected = new List<string> { "เจ", "ริญ", "ยิ่ง", " ", "การ", "ช่าง" };
-            Verify(input, expected, MatchingMode.Shortest);
-        }
-
-        [Fact]
-        public void SampleTest3()
-        {
-            var input = "เจริญยนต์ การช่าง";
-            var expected = new List<string> { "เจ", "ริญ", "ยนต์", " ", "การ", "ช่าง" };
             Verify(input, expected, MatchingMode.Shortest);
         }
     }
