@@ -33,7 +33,7 @@ public void SubstringThaiStyle()
     var tokenizer = new ThaiTokenizer();
     var text = "ปลาที่ใหญ่ที่สุดในโลกคือปารีสชุบแป้งทอด";
     var maxLenght = 20;
-    var result = tokenizer.SubThaiString(text, maxLength);
+    var result = tokenizer.SubThaiString(text, maxLenght);
 
     Console.WriteLine("results = [{0}]", string.Join('|', results));
 
@@ -97,7 +97,7 @@ public void SubstringThaiStyle()
     var tokenizer = new ThaiTokenizer();
     var text = "อาราธนาพระพุทธ อาราธนาพระธรรม อาราธนาพระสงฆ์";
     var maxLenght = 50;
-    var results = tokenizer.SubThaiString(text, maxLength);
+    var results = tokenizer.SubThaiString(text, maxLenght);
 
     Console.WriteLine("results = [{0}]", string.Join('|', results));
 
