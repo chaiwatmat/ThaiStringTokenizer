@@ -70,9 +70,9 @@ namespace ThaiStringTokenizer.Handlers
             else
             {
                 var lastResultIndex = resultWords.Count - 1;
-                var previousWord = resultWords[lastResultIndex];
+                var previousWord = resultWords.Count == 0 ? resultWord : resultWords[lastResultIndex];
 
-                if (string.IsNullOrWhiteSpace(previousWord))
+                if (string.IsNullOrWhiteSpace(previousWord) || resultWords.Count == 0)
                 {
                     resultWords.Add(resultWord);
                 }
