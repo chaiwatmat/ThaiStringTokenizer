@@ -19,5 +19,18 @@ namespace ThaiStringTokenizerTest
 
             Verify(input, expected, MatchingMode.Shortest);
         }
+
+        [Theory]
+        [InlineData("มายูรี", "มา", "ยู", "รี")]
+        [InlineData("จันทร์จิราการ", "จัน", "ทร์", "จิ", "รา", "การ")]
+        [InlineData("มารี", "มา", "รี")]
+        [InlineData("เบิร์นเนอร์", "เบิร์น", "เน", "อร์")]
+        [InlineData("น่อลา", "น่", "อลา")]
+        public void HardToReadNameTest0(string input, params string[] expects)
+        {
+            var expected = expects.ToList();
+
+            Verify(input, expected, MatchingMode.Shortest);
+        }
     }
 }
